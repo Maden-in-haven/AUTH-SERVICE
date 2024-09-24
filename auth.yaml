@@ -1,0 +1,178 @@
+openapi: 3.0.1
+info:
+  title: CRM
+  description: API для CRM
+  version: 1.0.0
+  license:
+    name: MIT License
+    url: https://opensource.org/licenses/MIT
+
+servers:
+  - url: http://localhost:3000/api
+    description: Локальный сервер разработки
+
+tags:
+  - name: Authorization
+    description: Операции связанные с авторизацией
+
+paths:
+  /auth/login:
+    post:
+      tags:
+        - Authorization
+      summary: Вход пользователя
+      description: Авторизует пользователя с использованием учетных данных (логин/пароль).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  description: Логин пользователя
+                  example: "login123"
+                password:
+                  type: string
+                  description: Пароль пользователя
+                  example: "password123"
+      responses:
+        '200':
+          description: Успешная авторизация
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  access_token:
+                    type: string
+                    description: Токен доступа JWT
+                    example: "eyJhbGciOiJIUzI1NiIsInR..."
+                  refresh_token:
+                    type: string
+                    description: Токен обновления JWT
+                    example: "eyJhbGciOiJIUzI1NiIsInR..."
+        '401':
+          description: Неверные учетные данные
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Invalid username or password"
+        '500':
+          description: Внутренняя ошибка сервера
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Internal server error"
+
+  /auth/verify:
+    post:
+      tags:
+        - Authorization
+      summary: Проверка токена доступа
+      description: Проверяет действительность переданного токена JWT.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                access_token:
+                  type: string
+                  description: Токен доступа JWT
+                  example: "eyJhbGciOiJIUzI1NiIsInR..."
+      responses:
+        '200':
+          description: Токен действителен
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  valid:
+                    type: boolean
+                    example: true
+        '401':
+          description: Токен недействителен или просрочен
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Invalid or expired token"
+        '500':
+          description: Внутренняя ошибка сервера
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Internal server error"
+
+  /auth/refresh:
+    post:
+      tags:
+        - Authorization
+      summary: Обновление токена
+      description: Обновляет токен доступа с использованием действующего токена обновления.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                refresh_token:
+                  type: string
+                  description: Токен обновления JWT
+                  example: "eyJhbGciOiJIUzI1NiIsInR..."
+      responses:
+        '200':
+          description: Токен обновлен
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  access_token:
+                    type: string
+                    description: Новый токен доступа JWT
+                    example: "eyJhbGciOiJIUzI1NiIsInR..."
+                  refresh_token:
+                    type: string
+                    description: Новый токен обновления JWT
+                    example: "eyJhbGciOiJIUzI1NiIsInR..."
+        '401':
+          description: Недействительный токен обновления
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Invalid refresh token"
+        '500':
+          description: Внутренняя ошибка сервера
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Internal server error"
