@@ -4,12 +4,17 @@ import (
 	"auth/internal/gen"
 	"auth/internal/services"
 	"context"
+	"log"
 )
 
 func (s *AuthService) AuthLoginPost(ctx context.Context, req *gen.AuthLoginPostReq) (gen.AuthLoginPostRes, error) {
+	// Логируем начало запроса
+	log.Printf("Начало запроса на авторизацию для пользователя: %s", req.Username.Value)
+
 	// Проверка корректности логина и пароля
 	user, err := services.AuthenticateUser(req.Username.Value, req.Password.Value)
 	if err != nil {
+		log.Printf("Ошибка авторизации пользователя %s: %v", req.Username.Value, err)
 		return &gen.AuthLoginPostUnauthorized{
 			Message: gen.OptString{
 				Value: "Неверный указан пользователь или пароль",
@@ -17,10 +22,12 @@ func (s *AuthService) AuthLoginPost(ctx context.Context, req *gen.AuthLoginPostR
 			},
 		}, nil
 	}
+	log.Printf("Пользователь %s успешно аутентифицирован, генерируем токен", req.Username.Value)
 
 	// Генерация JWT токена
 	token, err := services.GenerateJWT(user.ID)
 	if err != nil {
+		log.Printf("Ошибка генерации JWT токена для пользователя %s: %v", user.ID, err)
 		// Возвращаем 500 Internal Server Error в случае ошибки при генерации JWT
 		return &gen.AuthLoginPostInternalServerError{
 			Message: gen.OptString{
@@ -29,9 +36,12 @@ func (s *AuthService) AuthLoginPost(ctx context.Context, req *gen.AuthLoginPostR
 			},
 		}, nil
 	}
+	log.Printf("JWT токен успешно сгенерирован для пользователя %s", user.ID)
 
+	// Генерация Refresh токена
 	refreshToken, err := services.GenerateRefreshToken(user.ID)
 	if err != nil {
+		log.Printf("Ошибка генерации Refresh токена для пользователя %s: %v", user.ID, err)
 		// Возвращаем 500 Internal Server Error в случае ошибки при генерации Refresh токена
 		return &gen.AuthLoginPostInternalServerError{
 			Message: gen.OptString{
@@ -40,6 +50,10 @@ func (s *AuthService) AuthLoginPost(ctx context.Context, req *gen.AuthLoginPostR
 			},
 		}, nil
 	}
+	log.Printf("Refresh токен успешно сгенерирован для пользователя %s", user.ID)
+
+	// Логируем успешную авторизацию
+	log.Printf("Авторизация пользователя %s успешно завершена", req.Username.Value)
 
 	// Возвращаем ответ с токеном и рефреш токеном
 	return &gen.AuthLoginPostOK{
