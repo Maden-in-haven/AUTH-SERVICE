@@ -3,6 +3,8 @@ package config
 import (
 	"log"
 	"os"
+
+	"github.com/joho/godotenv"
 )
 
 // JWTConfig структура для хранения конфигурации JWT
@@ -29,8 +31,20 @@ type DBConfig struct {
 	DBName   string
 }
 
+// LoadEnv загружает переменные окружения из файла .env
+func LoadEnv() {
+	// Загружаем переменные окружения из файла .env
+	err := godotenv.Load("../../.env")
+	if err != nil {
+		log.Println("Не удалось загрузить файл .env. Возможно, файл отсутствует или путь к нему некорректный.")
+	}
+}
+
 // LoadDBConfig загружает конфигурацию для базы данных из переменных окружения
 func LoadDBConfig() *DBConfig {
+	// Загружаем переменные окружения из файла .env, если они есть
+	LoadEnv()
+
 	return &DBConfig{
 		Host:     GetEnv("POSTGRESQL_HOST", "localhost"),
 		Port:     GetEnv("POSTGRESQL_PORT", "5432"),
@@ -42,6 +56,9 @@ func LoadDBConfig() *DBConfig {
 
 // LoadJWTConfig загружает конфигурацию JWT из переменных окружения
 func LoadJWTConfig() *JWTConfig {
+	// Загружаем переменные окружения из файла .env, если они есть
+	LoadEnv()
+
 	return &JWTConfig{
 		SecretKey: GetEnv("JWT_SECRET_KEY", "your_default_secret_key"), // Получаем секретный ключ из переменной окружения
 	}
