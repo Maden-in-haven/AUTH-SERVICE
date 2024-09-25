@@ -19,20 +19,22 @@
 package main
 
 import (
+	"auth/internal/config"
+	"auth/internal/database"
 	"auth/internal/gen"
 	"auth/internal/handler"
 	"log"
-	"auth/internal/database"
 	"net/http"
 )
 
 func main() {
+	config.LoadEnv()
 	// Инициализируем подключение к базе данных
 	err := database.InitDatabase()
 	if err != nil {
 		log.Fatalf("Не удалось подключиться к базе данных: %v", err)
 	}
-	defer database.DbPool.Close() // Используем напрямую глобальную переменную dbPool
+	// defer database.DbPool.Close() // Используем напрямую глобальную переменную dbPool
 
 	// Создаем инстанс сервиса аутентификации.
 	authService := &handler.AuthService{}
