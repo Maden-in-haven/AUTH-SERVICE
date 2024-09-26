@@ -19,10 +19,12 @@
 package main
 
 import (
-	"auth/internal/config"
-	"auth/internal/database"
+	"github.com/Maden-in-haven/crmlib/pkg/config"
 	"auth/internal/gen"
 	"auth/internal/handler"
+
+	"github.com/Maden-in-haven/crmlib/pkg/database"
+
 	"log"
 	"net/http"
 )
