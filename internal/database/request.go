@@ -1,7 +1,7 @@
 package database
 
 import (
-	"auth/internal/model"
+	"github.com/Maden-in-haven/crmlib/pkg/model"
 	"context"
 )
 

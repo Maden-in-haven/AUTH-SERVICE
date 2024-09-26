@@ -2,7 +2,8 @@ package handler
 
 import (
 	"auth/internal/gen"
-	"auth/internal/services"
+	"github.com/Maden-in-haven/crmlib/pkg/jwt"
+	"github.com/Maden-in-haven/crmlib/pkg/user"
 	"context"
 	"log"
 )
@@ -12,7 +13,7 @@ func (s *AuthService) AuthLoginPost(ctx context.Context, req *gen.AuthLoginPostR
 	log.Printf("Начало запроса на авторизацию для пользователя: %s", req.Username.Value)
 
 	// Проверка корректности логина и пароля
-	user, err := services.AuthenticateUser(req.Username.Value, req.Password.Value)
+	user, err := user.AuthenticateUser(req.Username.Value, req.Password.Value)
 	if err != nil {
 		log.Printf("Ошибка авторизации пользователя %s: %v", req.Username.Value, err)
 		return &gen.AuthLoginPostUnauthorized{

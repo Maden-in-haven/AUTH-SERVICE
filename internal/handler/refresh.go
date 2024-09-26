@@ -2,7 +2,7 @@ package handler
 
 import (
 	"auth/internal/gen"
-	"auth/internal/services"
+	"github.com/Maden-in-haven/crmlib/pkg/jwt"
 	"context"
 	"log"
 )
