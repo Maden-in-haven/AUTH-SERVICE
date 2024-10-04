@@ -2,9 +2,10 @@ package handler
 
 import (
 	"auth/internal/gen"
-	"github.com/Maden-in-haven/crmlib/pkg/jwt"
 	"context"
 	"log"
+
+	services "github.com/Maden-in-haven/crmlib/pkg/jwt"
 )
 
 func (s *AuthService) AuthRefreshPost(ctx context.Context, req *gen.AuthRefreshPostReq) (gen.AuthRefreshPostRes, error) {
