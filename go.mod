@@ -3,7 +3,7 @@ module auth
 go 1.23.1
 
 require (
-	github.com/Maden-in-haven/crmlib v1.1.0
+	github.com/Maden-in-haven/crmlib v1.1.1
 	github.com/go-faster/errors v0.7.1
 	github.com/go-faster/jx v1.1.0
 	github.com/ogen-go/ogen v1.4.1
