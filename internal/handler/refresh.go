@@ -5,7 +5,7 @@ import (
 	"context"
 	"log"
 
-	services "github.com/Maden-in-haven/crmlib/pkg/jwt"
+	"github.com/Maden-in-haven/crmlib/pkg/myjwt"
 )
 
 func (s *AuthService) AuthRefreshPost(ctx context.Context, req *gen.AuthRefreshPostReq) (gen.AuthRefreshPostRes, error) {
@@ -13,7 +13,7 @@ func (s *AuthService) AuthRefreshPost(ctx context.Context, req *gen.AuthRefreshP
 	log.Printf("Запрос на обновление токенов для рефреш токена: %s", req.RefreshToken.Value)
 
 	// Валидация рефреш токена
-	claims, err := services.ValidateJWT(req.RefreshToken.Value)
+	claims, err := myjwt.ValidateJWT(req.RefreshToken.Value)
 	if err != nil {
 		log.Printf("Ошибка валидации рефреш токена: %v", err)
 		// Рефреш токен недействителен или истек
@@ -39,7 +39,7 @@ func (s *AuthService) AuthRefreshPost(ctx context.Context, req *gen.AuthRefreshP
 	log.Printf("Рефреш токен успешно валидирован для пользователя %s", userID)
 
 	// Генерация нового токена доступа (JWT)
-	newAccessToken, err := services.GenerateJWT(userID)
+	newAccessToken, err := myjwt.GenerateJWT(userID)
 	if err != nil {
 		log.Printf("Ошибка генерации нового токена доступа для пользователя %s: %v", userID, err)
 		return &gen.AuthRefreshPostInternalServerError{
@@ -52,7 +52,7 @@ func (s *AuthService) AuthRefreshPost(ctx context.Context, req *gen.AuthRefreshP
 	log.Printf("Новый токен доступа успешно сгенерирован для пользователя %s", userID)
 
 	// Генерация нового рефреш токена
-	refreshToken, err := services.GenerateRefreshToken(userID)
+	refreshToken, err := myjwt.GenerateRefreshToken(userID)
 	if err != nil {
 		log.Printf("Ошибка генерации рефреш токена для пользователя %s: %v", userID, err)
 		return &gen.AuthRefreshPostInternalServerError{

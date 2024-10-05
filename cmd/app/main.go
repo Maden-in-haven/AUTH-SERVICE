@@ -19,29 +19,14 @@
 package main
 
 import (
-	"github.com/Maden-in-haven/crmlib/pkg/config"
 	"auth/internal/gen"
 	"auth/internal/handler"
-
-	"github.com/Maden-in-haven/crmlib/pkg/database"
-
 	"log"
 	"net/http"
 )
 
 func main() {
-	config.LoadEnv()
-	// Инициализируем подключение к базе данных
-	err := database.InitDatabase()
-	if err != nil {
-		log.Fatalf("Не удалось подключиться к базе данных: %v", err)
-	}
-	// defer database.DbPool.Close() // Используем напрямую глобальную переменную dbPool
-
-	// Создаем инстанс сервиса аутентификации.
 	authService := &handler.AuthService{}
-
-	// Создаем сгенерированный сервер от ogen.
 	srv, err := gen.NewServer(authService)
 	if err != nil {
 		log.Fatalf("Ошибка при создании сервера: %v", err)

@@ -5,7 +5,7 @@ import (
 	"context"
 	"log"
 
-	services "github.com/Maden-in-haven/crmlib/pkg/jwt"
+	"github.com/Maden-in-haven/crmlib/pkg/myjwt"
 	"github.com/Maden-in-haven/crmlib/pkg/user"
 )
 
@@ -27,7 +27,7 @@ func (s *AuthService) AuthLoginPost(ctx context.Context, req *gen.AuthLoginPostR
 	log.Printf("Пользователь %s успешно аутентифицирован, генерируем токен", req.Username.Value)
 
 	// Генерация JWT токена
-	token, err := services.GenerateJWT(user.ID)
+	token, err := myjwt.GenerateJWT(user.ID)
 	if err != nil {
 		log.Printf("Ошибка генерации JWT токена для пользователя %s: %v", user.ID, err)
 		// Возвращаем 500 Internal Server Error в случае ошибки при генерации JWT
@@ -41,7 +41,7 @@ func (s *AuthService) AuthLoginPost(ctx context.Context, req *gen.AuthLoginPostR
 	log.Printf("JWT токен успешно сгенерирован для пользователя %s", user.ID)
 
 	// Генерация Refresh токена
-	refreshToken, err := services.GenerateRefreshToken(user.ID)
+	refreshToken, err := myjwt.GenerateRefreshToken(user.ID)
 	if err != nil {
 		log.Printf("Ошибка генерации Refresh токена для пользователя %s: %v", user.ID, err)
 		// Возвращаем 500 Internal Server Error в случае ошибки при генерации Refresh токена

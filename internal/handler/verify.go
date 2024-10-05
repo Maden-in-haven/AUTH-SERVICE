@@ -5,7 +5,7 @@ import (
 	"context"
 	"log"
 
-	services "github.com/Maden-in-haven/crmlib/pkg/jwt"
+	"github.com/Maden-in-haven/crmlib/pkg/myjwt"
 )
 
 func (s *AuthService) AuthVerifyPost(ctx context.Context, req *gen.AuthVerifyPostReq) (gen.AuthVerifyPostRes, error) {
@@ -13,7 +13,7 @@ func (s *AuthService) AuthVerifyPost(ctx context.Context, req *gen.AuthVerifyPos
 	log.Printf("Запрос на валидацию токена: %s", req.AccessToken.Value)
 
 	// Валидация токена
-	_, err := services.ValidateJWT(req.AccessToken.Value)
+	_, err := myjwt.ValidateJWT(req.AccessToken.Value)
 	if err != nil {
 		log.Printf("Ошибка валидации токена: %v", err)
 		// Токен недействителен или истек
