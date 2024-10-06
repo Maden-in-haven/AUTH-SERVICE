@@ -1,0 +1,13 @@
+curl -X POST http://localhost:8080/auth/login \
+-H "Content-Type: application/json" \
+-d '{
+  "username": "login123",
+  "password": "password123"
+}'
+
+curl -X POST http://localhost:8080/auth/login \
+-H "Content-Type: application/json" \
+-d '{
+  "username": "Исмаил",
+  "password": "12345678"
+}'
