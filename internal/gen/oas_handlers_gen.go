@@ -28,7 +28,7 @@ import (
 func (s *Server) handleAuthLoginPostRequest(args [0]string, argsEscaped bool, w http.ResponseWriter, r *http.Request) {
 	otelAttrs := []attribute.KeyValue{
 		semconv.HTTPRequestMethodKey.String("POST"),
-		semconv.HTTPRouteKey.String("/auth/login"),
+		semconv.HTTPRouteKey.String("api/auth/login"),
 	}
 
 	// Start a span for this request.
@@ -140,7 +140,7 @@ func (s *Server) handleAuthLoginPostRequest(args [0]string, argsEscaped bool, w 
 func (s *Server) handleAuthRefreshPostRequest(args [0]string, argsEscaped bool, w http.ResponseWriter, r *http.Request) {
 	otelAttrs := []attribute.KeyValue{
 		semconv.HTTPRequestMethodKey.String("POST"),
-		semconv.HTTPRouteKey.String("/auth/refresh"),
+		semconv.HTTPRouteKey.String("api/auth/refresh"),
 	}
 
 	// Start a span for this request.
@@ -251,7 +251,7 @@ func (s *Server) handleAuthRefreshPostRequest(args [0]string, argsEscaped bool, 
 func (s *Server) handleAuthVerifyPostRequest(args [0]string, argsEscaped bool, w http.ResponseWriter, r *http.Request) {
 	otelAttrs := []attribute.KeyValue{
 		semconv.HTTPRequestMethodKey.String("POST"),
-		semconv.HTTPRouteKey.String("/auth/verify"),
+		semconv.HTTPRouteKey.String("api/auth/verify"),
 	}
 
 	// Start a span for this request.
