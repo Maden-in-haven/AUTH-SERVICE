@@ -13,31 +13,31 @@ type UnimplementedHandler struct{}
 
 var _ Handler = UnimplementedHandler{}
 
-// AuthLoginPost implements POST /auth/login operation.
+// APIAuthLoginPost implements POST /api/auth/login operation.
 //
 // Авторизует пользователя с использованием учетных
 // данных (логин/пароль).
 //
-// POST /auth/login
-func (UnimplementedHandler) AuthLoginPost(ctx context.Context, req *AuthLoginPostReq) (r AuthLoginPostRes, _ error) {
+// POST /api/auth/login
+func (UnimplementedHandler) APIAuthLoginPost(ctx context.Context, req *APIAuthLoginPostReq) (r APIAuthLoginPostRes, _ error) {
 	return r, ht.ErrNotImplemented
 }
 
-// AuthRefreshPost implements POST /auth/refresh operation.
+// APIAuthRefreshPost implements POST /api/auth/refresh operation.
 //
 // Обновляет токен доступа с использованием
 // действующего токена обновления.
 //
-// POST /auth/refresh
-func (UnimplementedHandler) AuthRefreshPost(ctx context.Context, req *AuthRefreshPostReq) (r AuthRefreshPostRes, _ error) {
+// POST /api/auth/refresh
+func (UnimplementedHandler) APIAuthRefreshPost(ctx context.Context, req *APIAuthRefreshPostReq) (r APIAuthRefreshPostRes, _ error) {
 	return r, ht.ErrNotImplemented
 }
 
-// AuthVerifyPost implements POST /auth/verify operation.
+// APIAuthVerifyPost implements POST /api/auth/verify operation.
 //
 // Проверяет действительность переданного токена JWT.
 //
-// POST /auth/verify
-func (UnimplementedHandler) AuthVerifyPost(ctx context.Context, req *AuthVerifyPostReq) (r AuthVerifyPostRes, _ error) {
+// POST /api/auth/verify
+func (UnimplementedHandler) APIAuthVerifyPost(ctx context.Context, req *APIAuthVerifyPostReq) (r APIAuthVerifyPostRes, _ error) {
 	return r, ht.ErrNotImplemented
 }

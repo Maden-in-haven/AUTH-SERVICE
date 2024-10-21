@@ -8,26 +8,26 @@ import (
 
 // Handler handles operations described by OpenAPI v3 specification.
 type Handler interface {
-	// AuthLoginPost implements POST /auth/login operation.
+	// APIAuthLoginPost implements POST /api/auth/login operation.
 	//
 	// Авторизует пользователя с использованием учетных
 	// данных (логин/пароль).
 	//
-	// POST /auth/login
-	AuthLoginPost(ctx context.Context, req *AuthLoginPostReq) (AuthLoginPostRes, error)
-	// AuthRefreshPost implements POST /auth/refresh operation.
+	// POST /api/auth/login
+	APIAuthLoginPost(ctx context.Context, req *APIAuthLoginPostReq) (APIAuthLoginPostRes, error)
+	// APIAuthRefreshPost implements POST /api/auth/refresh operation.
 	//
 	// Обновляет токен доступа с использованием
 	// действующего токена обновления.
 	//
-	// POST /auth/refresh
-	AuthRefreshPost(ctx context.Context, req *AuthRefreshPostReq) (AuthRefreshPostRes, error)
-	// AuthVerifyPost implements POST /auth/verify operation.
+	// POST /api/auth/refresh
+	APIAuthRefreshPost(ctx context.Context, req *APIAuthRefreshPostReq) (APIAuthRefreshPostRes, error)
+	// APIAuthVerifyPost implements POST /api/auth/verify operation.
 	//
 	// Проверяет действительность переданного токена JWT.
 	//
-	// POST /auth/verify
-	AuthVerifyPost(ctx context.Context, req *AuthVerifyPostReq) (AuthVerifyPostRes, error)
+	// POST /api/auth/verify
+	APIAuthVerifyPost(ctx context.Context, req *APIAuthVerifyPostReq) (APIAuthVerifyPostRes, error)
 }
 
 // Server implements http server based on OpenAPI v3 specification and

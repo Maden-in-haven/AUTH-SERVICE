@@ -8,14 +8,14 @@ import (
 )
 
 // Encode implements json.Marshaler.
-func (s *AuthLoginPostInternalServerError) Encode(e *jx.Encoder) {
+func (s *APIAuthLoginPostInternalServerError) Encode(e *jx.Encoder) {
 	e.ObjStart()
 	s.encodeFields(e)
 	e.ObjEnd()
 }
 
 // encodeFields encodes fields.
-func (s *AuthLoginPostInternalServerError) encodeFields(e *jx.Encoder) {
+func (s *APIAuthLoginPostInternalServerError) encodeFields(e *jx.Encoder) {
 	{
 		if s.Message.Set {
 			e.FieldStart("message")
@@ -24,14 +24,14 @@ func (s *AuthLoginPostInternalServerError) encodeFields(e *jx.Encoder) {
 	}
 }
 
-var jsonFieldsNameOfAuthLoginPostInternalServerError = [1]string{
+var jsonFieldsNameOfAPIAuthLoginPostInternalServerError = [1]string{
 	0: "message",
 }
 
-// Decode decodes AuthLoginPostInternalServerError from json.
-func (s *AuthLoginPostInternalServerError) Decode(d *jx.Decoder) error {
+// Decode decodes APIAuthLoginPostInternalServerError from json.
+func (s *APIAuthLoginPostInternalServerError) Decode(d *jx.Decoder) error {
 	if s == nil {
-		return errors.New("invalid: unable to decode AuthLoginPostInternalServerError to nil")
+		return errors.New("invalid: unable to decode APIAuthLoginPostInternalServerError to nil")
 	}
 
 	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
@@ -51,34 +51,34 @@ func (s *AuthLoginPostInternalServerError) Decode(d *jx.Decoder) error {
 		}
 		return nil
 	}); err != nil {
-		return errors.Wrap(err, "decode AuthLoginPostInternalServerError")
+		return errors.Wrap(err, "decode APIAuthLoginPostInternalServerError")
 	}
 
 	return nil
 }
 
 // MarshalJSON implements stdjson.Marshaler.
-func (s *AuthLoginPostInternalServerError) MarshalJSON() ([]byte, error) {
+func (s *APIAuthLoginPostInternalServerError) MarshalJSON() ([]byte, error) {
 	e := jx.Encoder{}
 	s.Encode(&e)
 	return e.Bytes(), nil
 }
 
 // UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *AuthLoginPostInternalServerError) UnmarshalJSON(data []byte) error {
+func (s *APIAuthLoginPostInternalServerError) UnmarshalJSON(data []byte) error {
 	d := jx.DecodeBytes(data)
 	return s.Decode(d)
 }
 
 // Encode implements json.Marshaler.
-func (s *AuthLoginPostOK) Encode(e *jx.Encoder) {
+func (s *APIAuthLoginPostOK) Encode(e *jx.Encoder) {
 	e.ObjStart()
 	s.encodeFields(e)
 	e.ObjEnd()
 }
 
 // encodeFields encodes fields.
-func (s *AuthLoginPostOK) encodeFields(e *jx.Encoder) {
+func (s *APIAuthLoginPostOK) encodeFields(e *jx.Encoder) {
 	{
 		if s.AccessToken.Set {
 			e.FieldStart("access_token")
@@ -93,15 +93,15 @@ func (s *AuthLoginPostOK) encodeFields(e *jx.Encoder) {
 	}
 }
 
-var jsonFieldsNameOfAuthLoginPostOK = [2]string{
+var jsonFieldsNameOfAPIAuthLoginPostOK = [2]string{
 	0: "access_token",
 	1: "refresh_token",
 }
 
-// Decode decodes AuthLoginPostOK from json.
-func (s *AuthLoginPostOK) Decode(d *jx.Decoder) error {
+// Decode decodes APIAuthLoginPostOK from json.
+func (s *APIAuthLoginPostOK) Decode(d *jx.Decoder) error {
 	if s == nil {
-		return errors.New("invalid: unable to decode AuthLoginPostOK to nil")
+		return errors.New("invalid: unable to decode APIAuthLoginPostOK to nil")
 	}
 
 	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
@@ -131,34 +131,34 @@ func (s *AuthLoginPostOK) Decode(d *jx.Decoder) error {
 		}
 		return nil
 	}); err != nil {
-		return errors.Wrap(err, "decode AuthLoginPostOK")
+		return errors.Wrap(err, "decode APIAuthLoginPostOK")
 	}
 
 	return nil
 }
 
 // MarshalJSON implements stdjson.Marshaler.
-func (s *AuthLoginPostOK) MarshalJSON() ([]byte, error) {
+func (s *APIAuthLoginPostOK) MarshalJSON() ([]byte, error) {
 	e := jx.Encoder{}
 	s.Encode(&e)
 	return e.Bytes(), nil
 }
 
 // UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *AuthLoginPostOK) UnmarshalJSON(data []byte) error {
+func (s *APIAuthLoginPostOK) UnmarshalJSON(data []byte) error {
 	d := jx.DecodeBytes(data)
 	return s.Decode(d)
 }
 
 // Encode implements json.Marshaler.
-func (s *AuthLoginPostReq) Encode(e *jx.Encoder) {
+func (s *APIAuthLoginPostReq) Encode(e *jx.Encoder) {
 	e.ObjStart()
 	s.encodeFields(e)
 	e.ObjEnd()
 }
 
 // encodeFields encodes fields.
-func (s *AuthLoginPostReq) encodeFields(e *jx.Encoder) {
+func (s *APIAuthLoginPostReq) encodeFields(e *jx.Encoder) {
 	{
 		if s.Username.Set {
 			e.FieldStart("username")
@@ -173,15 +173,15 @@ func (s *AuthLoginPostReq) encodeFields(e *jx.Encoder) {
 	}
 }
 
-var jsonFieldsNameOfAuthLoginPostReq = [2]string{
+var jsonFieldsNameOfAPIAuthLoginPostReq = [2]string{
 	0: "username",
 	1: "password",
 }
 
-// Decode decodes AuthLoginPostReq from json.
-func (s *AuthLoginPostReq) Decode(d *jx.Decoder) error {
+// Decode decodes APIAuthLoginPostReq from json.
+func (s *APIAuthLoginPostReq) Decode(d *jx.Decoder) error {
 	if s == nil {
-		return errors.New("invalid: unable to decode AuthLoginPostReq to nil")
+		return errors.New("invalid: unable to decode APIAuthLoginPostReq to nil")
 	}
 
 	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
@@ -211,34 +211,34 @@ func (s *AuthLoginPostReq) Decode(d *jx.Decoder) error {
 		}
 		return nil
 	}); err != nil {
-		return errors.Wrap(err, "decode AuthLoginPostReq")
+		return errors.Wrap(err, "decode APIAuthLoginPostReq")
 	}
 
 	return nil
 }
 
 // MarshalJSON implements stdjson.Marshaler.
-func (s *AuthLoginPostReq) MarshalJSON() ([]byte, error) {
+func (s *APIAuthLoginPostReq) MarshalJSON() ([]byte, error) {
 	e := jx.Encoder{}
 	s.Encode(&e)
 	return e.Bytes(), nil
 }
 
 // UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *AuthLoginPostReq) UnmarshalJSON(data []byte) error {
+func (s *APIAuthLoginPostReq) UnmarshalJSON(data []byte) error {
 	d := jx.DecodeBytes(data)
 	return s.Decode(d)
 }
 
 // Encode implements json.Marshaler.
-func (s *AuthLoginPostUnauthorized) Encode(e *jx.Encoder) {
+func (s *APIAuthLoginPostUnauthorized) Encode(e *jx.Encoder) {
 	e.ObjStart()
 	s.encodeFields(e)
 	e.ObjEnd()
 }
 
 // encodeFields encodes fields.
-func (s *AuthLoginPostUnauthorized) encodeFields(e *jx.Encoder) {
+func (s *APIAuthLoginPostUnauthorized) encodeFields(e *jx.Encoder) {
 	{
 		if s.Message.Set {
 			e.FieldStart("message")
@@ -247,14 +247,14 @@ func (s *AuthLoginPostUnauthorized) encodeFields(e *jx.Encoder) {
 	}
 }
 
-var jsonFieldsNameOfAuthLoginPostUnauthorized = [1]string{
+var jsonFieldsNameOfAPIAuthLoginPostUnauthorized = [1]string{
 	0: "message",
 }
 
-// Decode decodes AuthLoginPostUnauthorized from json.
-func (s *AuthLoginPostUnauthorized) Decode(d *jx.Decoder) error {
+// Decode decodes APIAuthLoginPostUnauthorized from json.
+func (s *APIAuthLoginPostUnauthorized) Decode(d *jx.Decoder) error {
 	if s == nil {
-		return errors.New("invalid: unable to decode AuthLoginPostUnauthorized to nil")
+		return errors.New("invalid: unable to decode APIAuthLoginPostUnauthorized to nil")
 	}
 
 	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
@@ -274,34 +274,34 @@ func (s *AuthLoginPostUnauthorized) Decode(d *jx.Decoder) error {
 		}
 		return nil
 	}); err != nil {
-		return errors.Wrap(err, "decode AuthLoginPostUnauthorized")
+		return errors.Wrap(err, "decode APIAuthLoginPostUnauthorized")
 	}
 
 	return nil
 }
 
 // MarshalJSON implements stdjson.Marshaler.
-func (s *AuthLoginPostUnauthorized) MarshalJSON() ([]byte, error) {
+func (s *APIAuthLoginPostUnauthorized) MarshalJSON() ([]byte, error) {
 	e := jx.Encoder{}
 	s.Encode(&e)
 	return e.Bytes(), nil
 }
 
 // UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *AuthLoginPostUnauthorized) UnmarshalJSON(data []byte) error {
+func (s *APIAuthLoginPostUnauthorized) UnmarshalJSON(data []byte) error {
 	d := jx.DecodeBytes(data)
 	return s.Decode(d)
 }
 
 // Encode implements json.Marshaler.
-func (s *AuthRefreshPostInternalServerError) Encode(e *jx.Encoder) {
+func (s *APIAuthRefreshPostInternalServerError) Encode(e *jx.Encoder) {
 	e.ObjStart()
 	s.encodeFields(e)
 	e.ObjEnd()
 }
 
 // encodeFields encodes fields.
-func (s *AuthRefreshPostInternalServerError) encodeFields(e *jx.Encoder) {
+func (s *APIAuthRefreshPostInternalServerError) encodeFields(e *jx.Encoder) {
 	{
 		if s.Message.Set {
 			e.FieldStart("message")
@@ -310,14 +310,14 @@ func (s *AuthRefreshPostInternalServerError) encodeFields(e *jx.Encoder) {
 	}
 }
 
-var jsonFieldsNameOfAuthRefreshPostInternalServerError = [1]string{
+var jsonFieldsNameOfAPIAuthRefreshPostInternalServerError = [1]string{
 	0: "message",
 }
 
-// Decode decodes AuthRefreshPostInternalServerError from json.
-func (s *AuthRefreshPostInternalServerError) Decode(d *jx.Decoder) error {
+// Decode decodes APIAuthRefreshPostInternalServerError from json.
+func (s *APIAuthRefreshPostInternalServerError) Decode(d *jx.Decoder) error {
 	if s == nil {
-		return errors.New("invalid: unable to decode AuthRefreshPostInternalServerError to nil")
+		return errors.New("invalid: unable to decode APIAuthRefreshPostInternalServerError to nil")
 	}
 
 	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
@@ -337,34 +337,34 @@ func (s *AuthRefreshPostInternalServerError) Decode(d *jx.Decoder) error {
 		}
 		return nil
 	}); err != nil {
-		return errors.Wrap(err, "decode AuthRefreshPostInternalServerError")
+		return errors.Wrap(err, "decode APIAuthRefreshPostInternalServerError")
 	}
 
 	return nil
 }
 
 // MarshalJSON implements stdjson.Marshaler.
-func (s *AuthRefreshPostInternalServerError) MarshalJSON() ([]byte, error) {
+func (s *APIAuthRefreshPostInternalServerError) MarshalJSON() ([]byte, error) {
 	e := jx.Encoder{}
 	s.Encode(&e)
 	return e.Bytes(), nil
 }
 
 // UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *AuthRefreshPostInternalServerError) UnmarshalJSON(data []byte) error {
+func (s *APIAuthRefreshPostInternalServerError) UnmarshalJSON(data []byte) error {
 	d := jx.DecodeBytes(data)
 	return s.Decode(d)
 }
 
 // Encode implements json.Marshaler.
-func (s *AuthRefreshPostOK) Encode(e *jx.Encoder) {
+func (s *APIAuthRefreshPostOK) Encode(e *jx.Encoder) {
 	e.ObjStart()
 	s.encodeFields(e)
 	e.ObjEnd()
 }
 
 // encodeFields encodes fields.
-func (s *AuthRefreshPostOK) encodeFields(e *jx.Encoder) {
+func (s *APIAuthRefreshPostOK) encodeFields(e *jx.Encoder) {
 	{
 		if s.AccessToken.Set {
 			e.FieldStart("access_token")
@@ -379,15 +379,15 @@ func (s *AuthRefreshPostOK) encodeFields(e *jx.Encoder) {
 	}
 }
 
-var jsonFieldsNameOfAuthRefreshPostOK = [2]string{
+var jsonFieldsNameOfAPIAuthRefreshPostOK = [2]string{
 	0: "access_token",
 	1: "refresh_token",
 }
 
-// Decode decodes AuthRefreshPostOK from json.
-func (s *AuthRefreshPostOK) Decode(d *jx.Decoder) error {
+// Decode decodes APIAuthRefreshPostOK from json.
+func (s *APIAuthRefreshPostOK) Decode(d *jx.Decoder) error {
 	if s == nil {
-		return errors.New("invalid: unable to decode AuthRefreshPostOK to nil")
+		return errors.New("invalid: unable to decode APIAuthRefreshPostOK to nil")
 	}
 
 	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
@@ -417,34 +417,34 @@ func (s *AuthRefreshPostOK) Decode(d *jx.Decoder) error {
 		}
 		return nil
 	}); err != nil {
-		return errors.Wrap(err, "decode AuthRefreshPostOK")
+		return errors.Wrap(err, "decode APIAuthRefreshPostOK")
 	}
 
 	return nil
 }
 
 // MarshalJSON implements stdjson.Marshaler.
-func (s *AuthRefreshPostOK) MarshalJSON() ([]byte, error) {
+func (s *APIAuthRefreshPostOK) MarshalJSON() ([]byte, error) {
 	e := jx.Encoder{}
 	s.Encode(&e)
 	return e.Bytes(), nil
 }
 
 // UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *AuthRefreshPostOK) UnmarshalJSON(data []byte) error {
+func (s *APIAuthRefreshPostOK) UnmarshalJSON(data []byte) error {
 	d := jx.DecodeBytes(data)
 	return s.Decode(d)
 }
 
 // Encode implements json.Marshaler.
-func (s *AuthRefreshPostReq) Encode(e *jx.Encoder) {
+func (s *APIAuthRefreshPostReq) Encode(e *jx.Encoder) {
 	e.ObjStart()
 	s.encodeFields(e)
 	e.ObjEnd()
 }
 
 // encodeFields encodes fields.
-func (s *AuthRefreshPostReq) encodeFields(e *jx.Encoder) {
+func (s *APIAuthRefreshPostReq) encodeFields(e *jx.Encoder) {
 	{
 		if s.RefreshToken.Set {
 			e.FieldStart("refresh_token")
@@ -453,14 +453,14 @@ func (s *AuthRefreshPostReq) encodeFields(e *jx.Encoder) {
 	}
 }
 
-var jsonFieldsNameOfAuthRefreshPostReq = [1]string{
+var jsonFieldsNameOfAPIAuthRefreshPostReq = [1]string{
 	0: "refresh_token",
 }
 
-// Decode decodes AuthRefreshPostReq from json.
-func (s *AuthRefreshPostReq) Decode(d *jx.Decoder) error {
+// Decode decodes APIAuthRefreshPostReq from json.
+func (s *APIAuthRefreshPostReq) Decode(d *jx.Decoder) error {
 	if s == nil {
-		return errors.New("invalid: unable to decode AuthRefreshPostReq to nil")
+		return errors.New("invalid: unable to decode APIAuthRefreshPostReq to nil")
 	}
 
 	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
@@ -480,34 +480,34 @@ func (s *AuthRefreshPostReq) Decode(d *jx.Decoder) error {
 		}
 		return nil
 	}); err != nil {
-		return errors.Wrap(err, "decode AuthRefreshPostReq")
+		return errors.Wrap(err, "decode APIAuthRefreshPostReq")
 	}
 
 	return nil
 }
 
 // MarshalJSON implements stdjson.Marshaler.
-func (s *AuthRefreshPostReq) MarshalJSON() ([]byte, error) {
+func (s *APIAuthRefreshPostReq) MarshalJSON() ([]byte, error) {
 	e := jx.Encoder{}
 	s.Encode(&e)
 	return e.Bytes(), nil
 }
 
 // UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *AuthRefreshPostReq) UnmarshalJSON(data []byte) error {
+func (s *APIAuthRefreshPostReq) UnmarshalJSON(data []byte) error {
 	d := jx.DecodeBytes(data)
 	return s.Decode(d)
 }
 
 // Encode implements json.Marshaler.
-func (s *AuthRefreshPostUnauthorized) Encode(e *jx.Encoder) {
+func (s *APIAuthRefreshPostUnauthorized) Encode(e *jx.Encoder) {
 	e.ObjStart()
 	s.encodeFields(e)
 	e.ObjEnd()
 }
 
 // encodeFields encodes fields.
-func (s *AuthRefreshPostUnauthorized) encodeFields(e *jx.Encoder) {
+func (s *APIAuthRefreshPostUnauthorized) encodeFields(e *jx.Encoder) {
 	{
 		if s.Message.Set {
 			e.FieldStart("message")
@@ -516,14 +516,14 @@ func (s *AuthRefreshPostUnauthorized) encodeFields(e *jx.Encoder) {
 	}
 }
 
-var jsonFieldsNameOfAuthRefreshPostUnauthorized = [1]string{
+var jsonFieldsNameOfAPIAuthRefreshPostUnauthorized = [1]string{
 	0: "message",
 }
 
-// Decode decodes AuthRefreshPostUnauthorized from json.
-func (s *AuthRefreshPostUnauthorized) Decode(d *jx.Decoder) error {
+// Decode decodes APIAuthRefreshPostUnauthorized from json.
+func (s *APIAuthRefreshPostUnauthorized) Decode(d *jx.Decoder) error {
 	if s == nil {
-		return errors.New("invalid: unable to decode AuthRefreshPostUnauthorized to nil")
+		return errors.New("invalid: unable to decode APIAuthRefreshPostUnauthorized to nil")
 	}
 
 	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
@@ -543,34 +543,34 @@ func (s *AuthRefreshPostUnauthorized) Decode(d *jx.Decoder) error {
 		}
 		return nil
 	}); err != nil {
-		return errors.Wrap(err, "decode AuthRefreshPostUnauthorized")
+		return errors.Wrap(err, "decode APIAuthRefreshPostUnauthorized")
 	}
 
 	return nil
 }
 
 // MarshalJSON implements stdjson.Marshaler.
-func (s *AuthRefreshPostUnauthorized) MarshalJSON() ([]byte, error) {
+func (s *APIAuthRefreshPostUnauthorized) MarshalJSON() ([]byte, error) {
 	e := jx.Encoder{}
 	s.Encode(&e)
 	return e.Bytes(), nil
 }
 
 // UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *AuthRefreshPostUnauthorized) UnmarshalJSON(data []byte) error {
+func (s *APIAuthRefreshPostUnauthorized) UnmarshalJSON(data []byte) error {
 	d := jx.DecodeBytes(data)
 	return s.Decode(d)
 }
 
 // Encode implements json.Marshaler.
-func (s *AuthVerifyPostInternalServerError) Encode(e *jx.Encoder) {
+func (s *APIAuthVerifyPostInternalServerError) Encode(e *jx.Encoder) {
 	e.ObjStart()
 	s.encodeFields(e)
 	e.ObjEnd()
 }
 
 // encodeFields encodes fields.
-func (s *AuthVerifyPostInternalServerError) encodeFields(e *jx.Encoder) {
+func (s *APIAuthVerifyPostInternalServerError) encodeFields(e *jx.Encoder) {
 	{
 		if s.Message.Set {
 			e.FieldStart("message")
@@ -579,14 +579,14 @@ func (s *AuthVerifyPostInternalServerError) encodeFields(e *jx.Encoder) {
 	}
 }
 
-var jsonFieldsNameOfAuthVerifyPostInternalServerError = [1]string{
+var jsonFieldsNameOfAPIAuthVerifyPostInternalServerError = [1]string{
 	0: "message",
 }
 
-// Decode decodes AuthVerifyPostInternalServerError from json.
-func (s *AuthVerifyPostInternalServerError) Decode(d *jx.Decoder) error {
+// Decode decodes APIAuthVerifyPostInternalServerError from json.
+func (s *APIAuthVerifyPostInternalServerError) Decode(d *jx.Decoder) error {
 	if s == nil {
-		return errors.New("invalid: unable to decode AuthVerifyPostInternalServerError to nil")
+		return errors.New("invalid: unable to decode APIAuthVerifyPostInternalServerError to nil")
 	}
 
 	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
@@ -606,34 +606,34 @@ func (s *AuthVerifyPostInternalServerError) Decode(d *jx.Decoder) error {
 		}
 		return nil
 	}); err != nil {
-		return errors.Wrap(err, "decode AuthVerifyPostInternalServerError")
+		return errors.Wrap(err, "decode APIAuthVerifyPostInternalServerError")
 	}
 
 	return nil
 }
 
 // MarshalJSON implements stdjson.Marshaler.
-func (s *AuthVerifyPostInternalServerError) MarshalJSON() ([]byte, error) {
+func (s *APIAuthVerifyPostInternalServerError) MarshalJSON() ([]byte, error) {
 	e := jx.Encoder{}
 	s.Encode(&e)
 	return e.Bytes(), nil
 }
 
 // UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *AuthVerifyPostInternalServerError) UnmarshalJSON(data []byte) error {
+func (s *APIAuthVerifyPostInternalServerError) UnmarshalJSON(data []byte) error {
 	d := jx.DecodeBytes(data)
 	return s.Decode(d)
 }
 
 // Encode implements json.Marshaler.
-func (s *AuthVerifyPostOK) Encode(e *jx.Encoder) {
+func (s *APIAuthVerifyPostOK) Encode(e *jx.Encoder) {
 	e.ObjStart()
 	s.encodeFields(e)
 	e.ObjEnd()
 }
 
 // encodeFields encodes fields.
-func (s *AuthVerifyPostOK) encodeFields(e *jx.Encoder) {
+func (s *APIAuthVerifyPostOK) encodeFields(e *jx.Encoder) {
 	{
 		if s.Valid.Set {
 			e.FieldStart("valid")
@@ -642,14 +642,14 @@ func (s *AuthVerifyPostOK) encodeFields(e *jx.Encoder) {
 	}
 }
 
-var jsonFieldsNameOfAuthVerifyPostOK = [1]string{
+var jsonFieldsNameOfAPIAuthVerifyPostOK = [1]string{
 	0: "valid",
 }
 
-// Decode decodes AuthVerifyPostOK from json.
-func (s *AuthVerifyPostOK) Decode(d *jx.Decoder) error {
+// Decode decodes APIAuthVerifyPostOK from json.
+func (s *APIAuthVerifyPostOK) Decode(d *jx.Decoder) error {
 	if s == nil {
-		return errors.New("invalid: unable to decode AuthVerifyPostOK to nil")
+		return errors.New("invalid: unable to decode APIAuthVerifyPostOK to nil")
 	}
 
 	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
@@ -669,34 +669,34 @@ func (s *AuthVerifyPostOK) Decode(d *jx.Decoder) error {
 		}
 		return nil
 	}); err != nil {
-		return errors.Wrap(err, "decode AuthVerifyPostOK")
+		return errors.Wrap(err, "decode APIAuthVerifyPostOK")
 	}
 
 	return nil
 }
 
 // MarshalJSON implements stdjson.Marshaler.
-func (s *AuthVerifyPostOK) MarshalJSON() ([]byte, error) {
+func (s *APIAuthVerifyPostOK) MarshalJSON() ([]byte, error) {
 	e := jx.Encoder{}
 	s.Encode(&e)
 	return e.Bytes(), nil
 }
 
 // UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *AuthVerifyPostOK) UnmarshalJSON(data []byte) error {
+func (s *APIAuthVerifyPostOK) UnmarshalJSON(data []byte) error {
 	d := jx.DecodeBytes(data)
 	return s.Decode(d)
 }
 
 // Encode implements json.Marshaler.
-func (s *AuthVerifyPostReq) Encode(e *jx.Encoder) {
+func (s *APIAuthVerifyPostReq) Encode(e *jx.Encoder) {
 	e.ObjStart()
 	s.encodeFields(e)
 	e.ObjEnd()
 }
 
 // encodeFields encodes fields.
-func (s *AuthVerifyPostReq) encodeFields(e *jx.Encoder) {
+func (s *APIAuthVerifyPostReq) encodeFields(e *jx.Encoder) {
 	{
 		if s.AccessToken.Set {
 			e.FieldStart("access_token")
@@ -705,14 +705,14 @@ func (s *AuthVerifyPostReq) encodeFields(e *jx.Encoder) {
 	}
 }
 
-var jsonFieldsNameOfAuthVerifyPostReq = [1]string{
+var jsonFieldsNameOfAPIAuthVerifyPostReq = [1]string{
 	0: "access_token",
 }
 
-// Decode decodes AuthVerifyPostReq from json.
-func (s *AuthVerifyPostReq) Decode(d *jx.Decoder) error {
+// Decode decodes APIAuthVerifyPostReq from json.
+func (s *APIAuthVerifyPostReq) Decode(d *jx.Decoder) error {
 	if s == nil {
-		return errors.New("invalid: unable to decode AuthVerifyPostReq to nil")
+		return errors.New("invalid: unable to decode APIAuthVerifyPostReq to nil")
 	}
 
 	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
@@ -732,34 +732,34 @@ func (s *AuthVerifyPostReq) Decode(d *jx.Decoder) error {
 		}
 		return nil
 	}); err != nil {
-		return errors.Wrap(err, "decode AuthVerifyPostReq")
+		return errors.Wrap(err, "decode APIAuthVerifyPostReq")
 	}
 
 	return nil
 }
 
 // MarshalJSON implements stdjson.Marshaler.
-func (s *AuthVerifyPostReq) MarshalJSON() ([]byte, error) {
+func (s *APIAuthVerifyPostReq) MarshalJSON() ([]byte, error) {
 	e := jx.Encoder{}
 	s.Encode(&e)
 	return e.Bytes(), nil
 }
 
 // UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *AuthVerifyPostReq) UnmarshalJSON(data []byte) error {
+func (s *APIAuthVerifyPostReq) UnmarshalJSON(data []byte) error {
 	d := jx.DecodeBytes(data)
 	return s.Decode(d)
 }
 
 // Encode implements json.Marshaler.
-func (s *AuthVerifyPostUnauthorized) Encode(e *jx.Encoder) {
+func (s *APIAuthVerifyPostUnauthorized) Encode(e *jx.Encoder) {
 	e.ObjStart()
 	s.encodeFields(e)
 	e.ObjEnd()
 }
 
 // encodeFields encodes fields.
-func (s *AuthVerifyPostUnauthorized) encodeFields(e *jx.Encoder) {
+func (s *APIAuthVerifyPostUnauthorized) encodeFields(e *jx.Encoder) {
 	{
 		if s.Message.Set {
 			e.FieldStart("message")
@@ -768,14 +768,14 @@ func (s *AuthVerifyPostUnauthorized) encodeFields(e *jx.Encoder) {
 	}
 }
 
-var jsonFieldsNameOfAuthVerifyPostUnauthorized = [1]string{
+var jsonFieldsNameOfAPIAuthVerifyPostUnauthorized = [1]string{
 	0: "message",
 }
 
-// Decode decodes AuthVerifyPostUnauthorized from json.
-func (s *AuthVerifyPostUnauthorized) Decode(d *jx.Decoder) error {
+// Decode decodes APIAuthVerifyPostUnauthorized from json.
+func (s *APIAuthVerifyPostUnauthorized) Decode(d *jx.Decoder) error {
 	if s == nil {
-		return errors.New("invalid: unable to decode AuthVerifyPostUnauthorized to nil")
+		return errors.New("invalid: unable to decode APIAuthVerifyPostUnauthorized to nil")
 	}
 
 	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
@@ -795,21 +795,21 @@ func (s *AuthVerifyPostUnauthorized) Decode(d *jx.Decoder) error {
 		}
 		return nil
 	}); err != nil {
-		return errors.Wrap(err, "decode AuthVerifyPostUnauthorized")
+		return errors.Wrap(err, "decode APIAuthVerifyPostUnauthorized")
 	}
 
 	return nil
 }
 
 // MarshalJSON implements stdjson.Marshaler.
-func (s *AuthVerifyPostUnauthorized) MarshalJSON() ([]byte, error) {
+func (s *APIAuthVerifyPostUnauthorized) MarshalJSON() ([]byte, error) {
 	e := jx.Encoder{}
 	s.Encode(&e)
 	return e.Bytes(), nil
 }
 
 // UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *AuthVerifyPostUnauthorized) UnmarshalJSON(data []byte) error {
+func (s *APIAuthVerifyPostUnauthorized) UnmarshalJSON(data []byte) error {
 	d := jx.DecodeBytes(data)
 	return s.Decode(d)
 }

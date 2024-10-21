@@ -48,9 +48,9 @@ func (s *Server) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 			break
 		}
 		switch elem[0] {
-		case '/': // Prefix: "/auth/"
+		case '/': // Prefix: "/api/auth/"
 			origElem := elem
-			if l := len("/auth/"); len(elem) >= l && elem[0:l] == "/auth/" {
+			if l := len("/api/auth/"); len(elem) >= l && elem[0:l] == "/api/auth/" {
 				elem = elem[l:]
 			} else {
 				break
@@ -72,7 +72,7 @@ func (s *Server) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 					// Leaf node.
 					switch r.Method {
 					case "POST":
-						s.handleAuthLoginPostRequest([0]string{}, elemIsEscaped, w, r)
+						s.handleAPIAuthLoginPostRequest([0]string{}, elemIsEscaped, w, r)
 					default:
 						s.notAllowed(w, r, "POST")
 					}
@@ -93,7 +93,7 @@ func (s *Server) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 					// Leaf node.
 					switch r.Method {
 					case "POST":
-						s.handleAuthRefreshPostRequest([0]string{}, elemIsEscaped, w, r)
+						s.handleAPIAuthRefreshPostRequest([0]string{}, elemIsEscaped, w, r)
 					default:
 						s.notAllowed(w, r, "POST")
 					}
@@ -114,7 +114,7 @@ func (s *Server) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 					// Leaf node.
 					switch r.Method {
 					case "POST":
-						s.handleAuthVerifyPostRequest([0]string{}, elemIsEscaped, w, r)
+						s.handleAPIAuthVerifyPostRequest([0]string{}, elemIsEscaped, w, r)
 					default:
 						s.notAllowed(w, r, "POST")
 					}
@@ -206,9 +206,9 @@ func (s *Server) FindPath(method string, u *url.URL) (r Route, _ bool) {
 			break
 		}
 		switch elem[0] {
-		case '/': // Prefix: "/auth/"
+		case '/': // Prefix: "/api/auth/"
 			origElem := elem
-			if l := len("/auth/"); len(elem) >= l && elem[0:l] == "/auth/" {
+			if l := len("/api/auth/"); len(elem) >= l && elem[0:l] == "/api/auth/" {
 				elem = elem[l:]
 			} else {
 				break
@@ -230,10 +230,10 @@ func (s *Server) FindPath(method string, u *url.URL) (r Route, _ bool) {
 					// Leaf node.
 					switch method {
 					case "POST":
-						r.name = "AuthLoginPost"
+						r.name = "APIAuthLoginPost"
 						r.summary = "Вход пользователя"
 						r.operationID = ""
-						r.pathPattern = "/auth/login"
+						r.pathPattern = "/api/auth/login"
 						r.args = args
 						r.count = 0
 						return r, true
@@ -255,10 +255,10 @@ func (s *Server) FindPath(method string, u *url.URL) (r Route, _ bool) {
 					// Leaf node.
 					switch method {
 					case "POST":
-						r.name = "AuthRefreshPost"
+						r.name = "APIAuthRefreshPost"
 						r.summary = "Обновление токена"
 						r.operationID = ""
-						r.pathPattern = "/auth/refresh"
+						r.pathPattern = "/api/auth/refresh"
 						r.args = args
 						r.count = 0
 						return r, true
@@ -280,10 +280,10 @@ func (s *Server) FindPath(method string, u *url.URL) (r Route, _ bool) {
 					// Leaf node.
 					switch method {
 					case "POST":
-						r.name = "AuthVerifyPost"
+						r.name = "APIAuthVerifyPost"
 						r.summary = "Проверка токена доступа"
 						r.operationID = ""
-						r.pathPattern = "/auth/verify"
+						r.pathPattern = "/api/auth/verify"
 						r.args = args
 						r.count = 0
 						return r, true

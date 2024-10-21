@@ -15,8 +15,8 @@ import (
 	"github.com/ogen-go/ogen/validate"
 )
 
-func (s *Server) decodeAuthLoginPostRequest(r *http.Request) (
-	req *AuthLoginPostReq,
+func (s *Server) decodeAPIAuthLoginPostRequest(r *http.Request) (
+	req *APIAuthLoginPostReq,
 	close func() error,
 	rerr error,
 ) {
@@ -55,7 +55,7 @@ func (s *Server) decodeAuthLoginPostRequest(r *http.Request) (
 
 		d := jx.DecodeBytes(buf)
 
-		var request AuthLoginPostReq
+		var request APIAuthLoginPostReq
 		if err := func() error {
 			if err := request.Decode(d); err != nil {
 				return err
@@ -78,8 +78,8 @@ func (s *Server) decodeAuthLoginPostRequest(r *http.Request) (
 	}
 }
 
-func (s *Server) decodeAuthRefreshPostRequest(r *http.Request) (
-	req *AuthRefreshPostReq,
+func (s *Server) decodeAPIAuthRefreshPostRequest(r *http.Request) (
+	req *APIAuthRefreshPostReq,
 	close func() error,
 	rerr error,
 ) {
@@ -118,7 +118,7 @@ func (s *Server) decodeAuthRefreshPostRequest(r *http.Request) (
 
 		d := jx.DecodeBytes(buf)
 
-		var request AuthRefreshPostReq
+		var request APIAuthRefreshPostReq
 		if err := func() error {
 			if err := request.Decode(d); err != nil {
 				return err
@@ -141,8 +141,8 @@ func (s *Server) decodeAuthRefreshPostRequest(r *http.Request) (
 	}
 }
 
-func (s *Server) decodeAuthVerifyPostRequest(r *http.Request) (
-	req *AuthVerifyPostReq,
+func (s *Server) decodeAPIAuthVerifyPostRequest(r *http.Request) (
+	req *APIAuthVerifyPostReq,
 	close func() error,
 	rerr error,
 ) {
@@ -181,7 +181,7 @@ func (s *Server) decodeAuthVerifyPostRequest(r *http.Request) (
 
 		d := jx.DecodeBytes(buf)
 
-		var request AuthVerifyPostReq
+		var request APIAuthVerifyPostReq
 		if err := func() error {
 			if err := request.Decode(d); err != nil {
 				return err

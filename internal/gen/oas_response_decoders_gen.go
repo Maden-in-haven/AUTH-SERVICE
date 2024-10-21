@@ -14,7 +14,7 @@ import (
 	"github.com/ogen-go/ogen/validate"
 )
 
-func decodeAuthLoginPostResponse(resp *http.Response) (res AuthLoginPostRes, _ error) {
+func decodeAPIAuthLoginPostResponse(resp *http.Response) (res APIAuthLoginPostRes, _ error) {
 	switch resp.StatusCode {
 	case 200:
 		// Code 200.
@@ -30,7 +30,7 @@ func decodeAuthLoginPostResponse(resp *http.Response) (res AuthLoginPostRes, _ e
 			}
 			d := jx.DecodeBytes(buf)
 
-			var response AuthLoginPostOK
+			var response APIAuthLoginPostOK
 			if err := func() error {
 				if err := response.Decode(d); err != nil {
 					return err
@@ -65,7 +65,7 @@ func decodeAuthLoginPostResponse(resp *http.Response) (res AuthLoginPostRes, _ e
 			}
 			d := jx.DecodeBytes(buf)
 
-			var response AuthLoginPostUnauthorized
+			var response APIAuthLoginPostUnauthorized
 			if err := func() error {
 				if err := response.Decode(d); err != nil {
 					return err
@@ -100,7 +100,7 @@ func decodeAuthLoginPostResponse(resp *http.Response) (res AuthLoginPostRes, _ e
 			}
 			d := jx.DecodeBytes(buf)
 
-			var response AuthLoginPostInternalServerError
+			var response APIAuthLoginPostInternalServerError
 			if err := func() error {
 				if err := response.Decode(d); err != nil {
 					return err
@@ -125,7 +125,7 @@ func decodeAuthLoginPostResponse(resp *http.Response) (res AuthLoginPostRes, _ e
 	return res, validate.UnexpectedStatusCode(resp.StatusCode)
 }
 
-func decodeAuthRefreshPostResponse(resp *http.Response) (res AuthRefreshPostRes, _ error) {
+func decodeAPIAuthRefreshPostResponse(resp *http.Response) (res APIAuthRefreshPostRes, _ error) {
 	switch resp.StatusCode {
 	case 200:
 		// Code 200.
@@ -141,7 +141,7 @@ func decodeAuthRefreshPostResponse(resp *http.Response) (res AuthRefreshPostRes,
 			}
 			d := jx.DecodeBytes(buf)
 
-			var response AuthRefreshPostOK
+			var response APIAuthRefreshPostOK
 			if err := func() error {
 				if err := response.Decode(d); err != nil {
 					return err
@@ -176,7 +176,7 @@ func decodeAuthRefreshPostResponse(resp *http.Response) (res AuthRefreshPostRes,
 			}
 			d := jx.DecodeBytes(buf)
 
-			var response AuthRefreshPostUnauthorized
+			var response APIAuthRefreshPostUnauthorized
 			if err := func() error {
 				if err := response.Decode(d); err != nil {
 					return err
@@ -211,7 +211,7 @@ func decodeAuthRefreshPostResponse(resp *http.Response) (res AuthRefreshPostRes,
 			}
 			d := jx.DecodeBytes(buf)
 
-			var response AuthRefreshPostInternalServerError
+			var response APIAuthRefreshPostInternalServerError
 			if err := func() error {
 				if err := response.Decode(d); err != nil {
 					return err
@@ -236,7 +236,7 @@ func decodeAuthRefreshPostResponse(resp *http.Response) (res AuthRefreshPostRes,
 	return res, validate.UnexpectedStatusCode(resp.StatusCode)
 }
 
-func decodeAuthVerifyPostResponse(resp *http.Response) (res AuthVerifyPostRes, _ error) {
+func decodeAPIAuthVerifyPostResponse(resp *http.Response) (res APIAuthVerifyPostRes, _ error) {
 	switch resp.StatusCode {
 	case 200:
 		// Code 200.
@@ -252,7 +252,7 @@ func decodeAuthVerifyPostResponse(resp *http.Response) (res AuthVerifyPostRes, _
 			}
 			d := jx.DecodeBytes(buf)
 
-			var response AuthVerifyPostOK
+			var response APIAuthVerifyPostOK
 			if err := func() error {
 				if err := response.Decode(d); err != nil {
 					return err
@@ -287,7 +287,7 @@ func decodeAuthVerifyPostResponse(resp *http.Response) (res AuthVerifyPostRes, _
 			}
 			d := jx.DecodeBytes(buf)
 
-			var response AuthVerifyPostUnauthorized
+			var response APIAuthVerifyPostUnauthorized
 			if err := func() error {
 				if err := response.Decode(d); err != nil {
 					return err
@@ -322,7 +322,7 @@ func decodeAuthVerifyPostResponse(resp *http.Response) (res AuthVerifyPostRes, _
 			}
 			d := jx.DecodeBytes(buf)
 
-			var response AuthVerifyPostInternalServerError
+			var response APIAuthVerifyPostInternalServerError
 			if err := func() error {
 				if err := response.Decode(d); err != nil {
 					return err

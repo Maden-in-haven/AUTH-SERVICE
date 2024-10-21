@@ -11,8 +11,8 @@ import (
 	ht "github.com/ogen-go/ogen/http"
 )
 
-func encodeAuthLoginPostRequest(
-	req *AuthLoginPostReq,
+func encodeAPIAuthLoginPostRequest(
+	req *APIAuthLoginPostReq,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -25,8 +25,8 @@ func encodeAuthLoginPostRequest(
 	return nil
 }
 
-func encodeAuthRefreshPostRequest(
-	req *AuthRefreshPostReq,
+func encodeAPIAuthRefreshPostRequest(
+	req *APIAuthRefreshPostReq,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -39,8 +39,8 @@ func encodeAuthRefreshPostRequest(
 	return nil
 }
 
-func encodeAuthVerifyPostRequest(
-	req *AuthVerifyPostReq,
+func encodeAPIAuthVerifyPostRequest(
+	req *APIAuthVerifyPostReq,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"

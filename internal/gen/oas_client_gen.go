@@ -21,26 +21,26 @@ import (
 
 // Invoker invokes operations described by OpenAPI v3 specification.
 type Invoker interface {
-	// AuthLoginPost invokes POST /auth/login operation.
+	// APIAuthLoginPost invokes POST /api/auth/login operation.
 	//
 	// Авторизует пользователя с использованием учетных
 	// данных (логин/пароль).
 	//
-	// POST /auth/login
-	AuthLoginPost(ctx context.Context, request *AuthLoginPostReq) (AuthLoginPostRes, error)
-	// AuthRefreshPost invokes POST /auth/refresh operation.
+	// POST /api/auth/login
+	APIAuthLoginPost(ctx context.Context, request *APIAuthLoginPostReq) (APIAuthLoginPostRes, error)
+	// APIAuthRefreshPost invokes POST /api/auth/refresh operation.
 	//
 	// Обновляет токен доступа с использованием
 	// действующего токена обновления.
 	//
-	// POST /auth/refresh
-	AuthRefreshPost(ctx context.Context, request *AuthRefreshPostReq) (AuthRefreshPostRes, error)
-	// AuthVerifyPost invokes POST /auth/verify operation.
+	// POST /api/auth/refresh
+	APIAuthRefreshPost(ctx context.Context, request *APIAuthRefreshPostReq) (APIAuthRefreshPostRes, error)
+	// APIAuthVerifyPost invokes POST /api/auth/verify operation.
 	//
 	// Проверяет действительность переданного токена JWT.
 	//
-	// POST /auth/verify
-	AuthVerifyPost(ctx context.Context, request *AuthVerifyPostReq) (AuthVerifyPostRes, error)
+	// POST /api/auth/verify
+	APIAuthVerifyPost(ctx context.Context, request *APIAuthVerifyPostReq) (APIAuthVerifyPostRes, error)
 }
 
 // Client implements OAS client.
@@ -91,21 +91,21 @@ func (c *Client) requestURL(ctx context.Context) *url.URL {
 	return u
 }
 
-// AuthLoginPost invokes POST /auth/login operation.
+// APIAuthLoginPost invokes POST /api/auth/login operation.
 //
 // Авторизует пользователя с использованием учетных
 // данных (логин/пароль).
 //
-// POST /auth/login
-func (c *Client) AuthLoginPost(ctx context.Context, request *AuthLoginPostReq) (AuthLoginPostRes, error) {
-	res, err := c.sendAuthLoginPost(ctx, request)
+// POST /api/auth/login
+func (c *Client) APIAuthLoginPost(ctx context.Context, request *APIAuthLoginPostReq) (APIAuthLoginPostRes, error) {
+	res, err := c.sendAPIAuthLoginPost(ctx, request)
 	return res, err
 }
 
-func (c *Client) sendAuthLoginPost(ctx context.Context, request *AuthLoginPostReq) (res AuthLoginPostRes, err error) {
+func (c *Client) sendAPIAuthLoginPost(ctx context.Context, request *APIAuthLoginPostReq) (res APIAuthLoginPostRes, err error) {
 	otelAttrs := []attribute.KeyValue{
 		semconv.HTTPRequestMethodKey.String("POST"),
-		semconv.HTTPRouteKey.String("/auth/login"),
+		semconv.HTTPRouteKey.String("/api/auth/login"),
 	}
 
 	// Run stopwatch.
@@ -120,7 +120,7 @@ func (c *Client) sendAuthLoginPost(ctx context.Context, request *AuthLoginPostRe
 	c.requests.Add(ctx, 1, metric.WithAttributes(otelAttrs...))
 
 	// Start a span for this request.
-	ctx, span := c.cfg.Tracer.Start(ctx, "AuthLoginPost",
+	ctx, span := c.cfg.Tracer.Start(ctx, "APIAuthLoginPost",
 		trace.WithAttributes(otelAttrs...),
 		clientSpanKind,
 	)
@@ -138,7 +138,7 @@ func (c *Client) sendAuthLoginPost(ctx context.Context, request *AuthLoginPostRe
 	stage = "BuildURL"
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [1]string
-	pathParts[0] = "/auth/login"
+	pathParts[0] = "/api/auth/login"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	stage = "EncodeRequest"
@@ -146,7 +146,7 @@ func (c *Client) sendAuthLoginPost(ctx context.Context, request *AuthLoginPostRe
 	if err != nil {
 		return res, errors.Wrap(err, "create request")
 	}
-	if err := encodeAuthLoginPostRequest(request, r); err != nil {
+	if err := encodeAPIAuthLoginPostRequest(request, r); err != nil {
 		return res, errors.Wrap(err, "encode request")
 	}
 
@@ -158,7 +158,7 @@ func (c *Client) sendAuthLoginPost(ctx context.Context, request *AuthLoginPostRe
 	defer resp.Body.Close()
 
 	stage = "DecodeResponse"
-	result, err := decodeAuthLoginPostResponse(resp)
+	result, err := decodeAPIAuthLoginPostResponse(resp)
 	if err != nil {
 		return res, errors.Wrap(err, "decode response")
 	}
@@ -166,21 +166,21 @@ func (c *Client) sendAuthLoginPost(ctx context.Context, request *AuthLoginPostRe
 	return result, nil
 }
 
-// AuthRefreshPost invokes POST /auth/refresh operation.
+// APIAuthRefreshPost invokes POST /api/auth/refresh operation.
 //
 // Обновляет токен доступа с использованием
 // действующего токена обновления.
 //
-// POST /auth/refresh
-func (c *Client) AuthRefreshPost(ctx context.Context, request *AuthRefreshPostReq) (AuthRefreshPostRes, error) {
-	res, err := c.sendAuthRefreshPost(ctx, request)
+// POST /api/auth/refresh
+func (c *Client) APIAuthRefreshPost(ctx context.Context, request *APIAuthRefreshPostReq) (APIAuthRefreshPostRes, error) {
+	res, err := c.sendAPIAuthRefreshPost(ctx, request)
 	return res, err
 }
 
-func (c *Client) sendAuthRefreshPost(ctx context.Context, request *AuthRefreshPostReq) (res AuthRefreshPostRes, err error) {
+func (c *Client) sendAPIAuthRefreshPost(ctx context.Context, request *APIAuthRefreshPostReq) (res APIAuthRefreshPostRes, err error) {
 	otelAttrs := []attribute.KeyValue{
 		semconv.HTTPRequestMethodKey.String("POST"),
-		semconv.HTTPRouteKey.String("/auth/refresh"),
+		semconv.HTTPRouteKey.String("/api/auth/refresh"),
 	}
 
 	// Run stopwatch.
@@ -195,7 +195,7 @@ func (c *Client) sendAuthRefreshPost(ctx context.Context, request *AuthRefreshPo
 	c.requests.Add(ctx, 1, metric.WithAttributes(otelAttrs...))
 
 	// Start a span for this request.
-	ctx, span := c.cfg.Tracer.Start(ctx, "AuthRefreshPost",
+	ctx, span := c.cfg.Tracer.Start(ctx, "APIAuthRefreshPost",
 		trace.WithAttributes(otelAttrs...),
 		clientSpanKind,
 	)
@@ -213,7 +213,7 @@ func (c *Client) sendAuthRefreshPost(ctx context.Context, request *AuthRefreshPo
 	stage = "BuildURL"
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [1]string
-	pathParts[0] = "/auth/refresh"
+	pathParts[0] = "/api/auth/refresh"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	stage = "EncodeRequest"
@@ -221,7 +221,7 @@ func (c *Client) sendAuthRefreshPost(ctx context.Context, request *AuthRefreshPo
 	if err != nil {
 		return res, errors.Wrap(err, "create request")
 	}
-	if err := encodeAuthRefreshPostRequest(request, r); err != nil {
+	if err := encodeAPIAuthRefreshPostRequest(request, r); err != nil {
 		return res, errors.Wrap(err, "encode request")
 	}
 
@@ -233,7 +233,7 @@ func (c *Client) sendAuthRefreshPost(ctx context.Context, request *AuthRefreshPo
 	defer resp.Body.Close()
 
 	stage = "DecodeResponse"
-	result, err := decodeAuthRefreshPostResponse(resp)
+	result, err := decodeAPIAuthRefreshPostResponse(resp)
 	if err != nil {
 		return res, errors.Wrap(err, "decode response")
 	}
@@ -241,20 +241,20 @@ func (c *Client) sendAuthRefreshPost(ctx context.Context, request *AuthRefreshPo
 	return result, nil
 }
 
-// AuthVerifyPost invokes POST /auth/verify operation.
+// APIAuthVerifyPost invokes POST /api/auth/verify operation.
 //
 // Проверяет действительность переданного токена JWT.
 //
-// POST /auth/verify
-func (c *Client) AuthVerifyPost(ctx context.Context, request *AuthVerifyPostReq) (AuthVerifyPostRes, error) {
-	res, err := c.sendAuthVerifyPost(ctx, request)
+// POST /api/auth/verify
+func (c *Client) APIAuthVerifyPost(ctx context.Context, request *APIAuthVerifyPostReq) (APIAuthVerifyPostRes, error) {
+	res, err := c.sendAPIAuthVerifyPost(ctx, request)
 	return res, err
 }
 
-func (c *Client) sendAuthVerifyPost(ctx context.Context, request *AuthVerifyPostReq) (res AuthVerifyPostRes, err error) {
+func (c *Client) sendAPIAuthVerifyPost(ctx context.Context, request *APIAuthVerifyPostReq) (res APIAuthVerifyPostRes, err error) {
 	otelAttrs := []attribute.KeyValue{
 		semconv.HTTPRequestMethodKey.String("POST"),
-		semconv.HTTPRouteKey.String("/auth/verify"),
+		semconv.HTTPRouteKey.String("/api/auth/verify"),
 	}
 
 	// Run stopwatch.
@@ -269,7 +269,7 @@ func (c *Client) sendAuthVerifyPost(ctx context.Context, request *AuthVerifyPost
 	c.requests.Add(ctx, 1, metric.WithAttributes(otelAttrs...))
 
 	// Start a span for this request.
-	ctx, span := c.cfg.Tracer.Start(ctx, "AuthVerifyPost",
+	ctx, span := c.cfg.Tracer.Start(ctx, "APIAuthVerifyPost",
 		trace.WithAttributes(otelAttrs...),
 		clientSpanKind,
 	)
@@ -287,7 +287,7 @@ func (c *Client) sendAuthVerifyPost(ctx context.Context, request *AuthVerifyPost
 	stage = "BuildURL"
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [1]string
-	pathParts[0] = "/auth/verify"
+	pathParts[0] = "/api/auth/verify"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	stage = "EncodeRequest"
@@ -295,7 +295,7 @@ func (c *Client) sendAuthVerifyPost(ctx context.Context, request *AuthVerifyPost
 	if err != nil {
 		return res, errors.Wrap(err, "create request")
 	}
-	if err := encodeAuthVerifyPostRequest(request, r); err != nil {
+	if err := encodeAPIAuthVerifyPostRequest(request, r); err != nil {
 		return res, errors.Wrap(err, "encode request")
 	}
 
@@ -307,7 +307,7 @@ func (c *Client) sendAuthVerifyPost(ctx context.Context, request *AuthVerifyPost
 	defer resp.Body.Close()
 
 	stage = "DecodeResponse"
-	result, err := decodeAuthVerifyPostResponse(resp)
+	result, err := decodeAPIAuthVerifyPostResponse(resp)
 	if err != nil {
 		return res, errors.Wrap(err, "decode response")
 	}

@@ -11,9 +11,9 @@ import (
 	"go.opentelemetry.io/otel/trace"
 )
 
-func encodeAuthLoginPostResponse(response AuthLoginPostRes, w http.ResponseWriter, span trace.Span) error {
+func encodeAPIAuthLoginPostResponse(response APIAuthLoginPostRes, w http.ResponseWriter, span trace.Span) error {
 	switch response := response.(type) {
-	case *AuthLoginPostOK:
+	case *APIAuthLoginPostOK:
 		w.Header().Set("Content-Type", "application/json; charset=utf-8")
 		w.WriteHeader(200)
 		span.SetStatus(codes.Ok, http.StatusText(200))
@@ -26,7 +26,7 @@ func encodeAuthLoginPostResponse(response AuthLoginPostRes, w http.ResponseWrite
 
 		return nil
 
-	case *AuthLoginPostUnauthorized:
+	case *APIAuthLoginPostUnauthorized:
 		w.Header().Set("Content-Type", "application/json; charset=utf-8")
 		w.WriteHeader(401)
 		span.SetStatus(codes.Error, http.StatusText(401))
@@ -39,7 +39,7 @@ func encodeAuthLoginPostResponse(response AuthLoginPostRes, w http.ResponseWrite
 
 		return nil
 
-	case *AuthLoginPostInternalServerError:
+	case *APIAuthLoginPostInternalServerError:
 		w.Header().Set("Content-Type", "application/json; charset=utf-8")
 		w.WriteHeader(500)
 		span.SetStatus(codes.Error, http.StatusText(500))
@@ -57,9 +57,9 @@ func encodeAuthLoginPostResponse(response AuthLoginPostRes, w http.ResponseWrite
 	}
 }
 
-func encodeAuthRefreshPostResponse(response AuthRefreshPostRes, w http.ResponseWriter, span trace.Span) error {
+func encodeAPIAuthRefreshPostResponse(response APIAuthRefreshPostRes, w http.ResponseWriter, span trace.Span) error {
 	switch response := response.(type) {
-	case *AuthRefreshPostOK:
+	case *APIAuthRefreshPostOK:
 		w.Header().Set("Content-Type", "application/json; charset=utf-8")
 		w.WriteHeader(200)
 		span.SetStatus(codes.Ok, http.StatusText(200))
@@ -72,7 +72,7 @@ func encodeAuthRefreshPostResponse(response AuthRefreshPostRes, w http.ResponseW
 
 		return nil
 
-	case *AuthRefreshPostUnauthorized:
+	case *APIAuthRefreshPostUnauthorized:
 		w.Header().Set("Content-Type", "application/json; charset=utf-8")
 		w.WriteHeader(401)
 		span.SetStatus(codes.Error, http.StatusText(401))
@@ -85,7 +85,7 @@ func encodeAuthRefreshPostResponse(response AuthRefreshPostRes, w http.ResponseW
 
 		return nil
 
-	case *AuthRefreshPostInternalServerError:
+	case *APIAuthRefreshPostInternalServerError:
 		w.Header().Set("Content-Type", "application/json; charset=utf-8")
 		w.WriteHeader(500)
 		span.SetStatus(codes.Error, http.StatusText(500))
@@ -103,9 +103,9 @@ func encodeAuthRefreshPostResponse(response AuthRefreshPostRes, w http.ResponseW
 	}
 }
 
-func encodeAuthVerifyPostResponse(response AuthVerifyPostRes, w http.ResponseWriter, span trace.Span) error {
+func encodeAPIAuthVerifyPostResponse(response APIAuthVerifyPostRes, w http.ResponseWriter, span trace.Span) error {
 	switch response := response.(type) {
-	case *AuthVerifyPostOK:
+	case *APIAuthVerifyPostOK:
 		w.Header().Set("Content-Type", "application/json; charset=utf-8")
 		w.WriteHeader(200)
 		span.SetStatus(codes.Ok, http.StatusText(200))
@@ -118,7 +118,7 @@ func encodeAuthVerifyPostResponse(response AuthVerifyPostRes, w http.ResponseWri
 
 		return nil
 
-	case *AuthVerifyPostUnauthorized:
+	case *APIAuthVerifyPostUnauthorized:
 		w.Header().Set("Content-Type", "application/json; charset=utf-8")
 		w.WriteHeader(401)
 		span.SetStatus(codes.Error, http.StatusText(401))
@@ -131,7 +131,7 @@ func encodeAuthVerifyPostResponse(response AuthVerifyPostRes, w http.ResponseWri
 
 		return nil
 
-	case *AuthVerifyPostInternalServerError:
+	case *APIAuthVerifyPostInternalServerError:
 		w.Header().Set("Content-Type", "application/json; charset=utf-8")
 		w.WriteHeader(500)
 		span.SetStatus(codes.Error, http.StatusText(500))

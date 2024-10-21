@@ -8,7 +8,7 @@ import (
 	"github.com/Maden-in-haven/crmlib/pkg/myjwt"
 )
 
-func (s *AuthService) AuthVerifyPost(ctx context.Context, req *gen.AuthVerifyPostReq) (gen.AuthVerifyPostRes, error) {
+func (s *AuthService) AuthVerifyPost(ctx context.Context, req *gen.APIAuthVerifyPostReq) (gen.APIAuthVerifyPostRes, error) {
 	// Логируем начало запроса валидации токена
 	log.Printf("Запрос на валидацию токена: %s", req.AccessToken.Value)
 
@@ -17,7 +17,7 @@ func (s *AuthService) AuthVerifyPost(ctx context.Context, req *gen.AuthVerifyPos
 	if err != nil {
 		log.Printf("Ошибка валидации токена: %v", err)
 		// Токен недействителен или истек
-		return &gen.AuthVerifyPostUnauthorized{
+		return &gen.APIAuthVerifyPostUnauthorized{
 			Message: gen.OptString{
 				Value: "Неверный или истекший токен",
 				Set:   true,
@@ -29,7 +29,7 @@ func (s *AuthService) AuthVerifyPost(ctx context.Context, req *gen.AuthVerifyPos
 	log.Println("Токен успешно валидирован")
 
 	// Если токен валиден, возвращаем успешный ответ
-	return &gen.AuthVerifyPostOK{
+	return &gen.APIAuthVerifyPostOK{
 		Valid: gen.OptBool{Value: true, Set: true},
 	}, nil
 }

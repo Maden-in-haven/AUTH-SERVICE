@@ -2,23 +2,23 @@
 
 package gen
 
-type AuthLoginPostInternalServerError struct {
+type APIAuthLoginPostInternalServerError struct {
 	Message OptString `json:"message"`
 }
 
 // GetMessage returns the value of Message.
-func (s *AuthLoginPostInternalServerError) GetMessage() OptString {
+func (s *APIAuthLoginPostInternalServerError) GetMessage() OptString {
 	return s.Message
 }
 
 // SetMessage sets the value of Message.
-func (s *AuthLoginPostInternalServerError) SetMessage(val OptString) {
+func (s *APIAuthLoginPostInternalServerError) SetMessage(val OptString) {
 	s.Message = val
 }
 
-func (*AuthLoginPostInternalServerError) authLoginPostRes() {}
+func (*APIAuthLoginPostInternalServerError) aPIAuthLoginPostRes() {}
 
-type AuthLoginPostOK struct {
+type APIAuthLoginPostOK struct {
 	// Токен доступа JWT.
 	AccessToken OptString `json:"access_token"`
 	// Токен обновления JWT.
@@ -26,28 +26,28 @@ type AuthLoginPostOK struct {
 }
 
 // GetAccessToken returns the value of AccessToken.
-func (s *AuthLoginPostOK) GetAccessToken() OptString {
+func (s *APIAuthLoginPostOK) GetAccessToken() OptString {
 	return s.AccessToken
 }
 
 // GetRefreshToken returns the value of RefreshToken.
-func (s *AuthLoginPostOK) GetRefreshToken() OptString {
+func (s *APIAuthLoginPostOK) GetRefreshToken() OptString {
 	return s.RefreshToken
 }
 
 // SetAccessToken sets the value of AccessToken.
-func (s *AuthLoginPostOK) SetAccessToken(val OptString) {
+func (s *APIAuthLoginPostOK) SetAccessToken(val OptString) {
 	s.AccessToken = val
 }
 
 // SetRefreshToken sets the value of RefreshToken.
-func (s *AuthLoginPostOK) SetRefreshToken(val OptString) {
+func (s *APIAuthLoginPostOK) SetRefreshToken(val OptString) {
 	s.RefreshToken = val
 }
 
-func (*AuthLoginPostOK) authLoginPostRes() {}
+func (*APIAuthLoginPostOK) aPIAuthLoginPostRes() {}
 
-type AuthLoginPostReq struct {
+type APIAuthLoginPostReq struct {
 	// Логин пользователя.
 	Username OptString `json:"username"`
 	// Пароль пользователя.
@@ -55,58 +55,58 @@ type AuthLoginPostReq struct {
 }
 
 // GetUsername returns the value of Username.
-func (s *AuthLoginPostReq) GetUsername() OptString {
+func (s *APIAuthLoginPostReq) GetUsername() OptString {
 	return s.Username
 }
 
 // GetPassword returns the value of Password.
-func (s *AuthLoginPostReq) GetPassword() OptString {
+func (s *APIAuthLoginPostReq) GetPassword() OptString {
 	return s.Password
 }
 
 // SetUsername sets the value of Username.
-func (s *AuthLoginPostReq) SetUsername(val OptString) {
+func (s *APIAuthLoginPostReq) SetUsername(val OptString) {
 	s.Username = val
 }
 
 // SetPassword sets the value of Password.
-func (s *AuthLoginPostReq) SetPassword(val OptString) {
+func (s *APIAuthLoginPostReq) SetPassword(val OptString) {
 	s.Password = val
 }
 
-type AuthLoginPostUnauthorized struct {
+type APIAuthLoginPostUnauthorized struct {
 	Message OptString `json:"message"`
 }
 
 // GetMessage returns the value of Message.
-func (s *AuthLoginPostUnauthorized) GetMessage() OptString {
+func (s *APIAuthLoginPostUnauthorized) GetMessage() OptString {
 	return s.Message
 }
 
 // SetMessage sets the value of Message.
-func (s *AuthLoginPostUnauthorized) SetMessage(val OptString) {
+func (s *APIAuthLoginPostUnauthorized) SetMessage(val OptString) {
 	s.Message = val
 }
 
-func (*AuthLoginPostUnauthorized) authLoginPostRes() {}
+func (*APIAuthLoginPostUnauthorized) aPIAuthLoginPostRes() {}
 
-type AuthRefreshPostInternalServerError struct {
+type APIAuthRefreshPostInternalServerError struct {
 	Message OptString `json:"message"`
 }
 
 // GetMessage returns the value of Message.
-func (s *AuthRefreshPostInternalServerError) GetMessage() OptString {
+func (s *APIAuthRefreshPostInternalServerError) GetMessage() OptString {
 	return s.Message
 }
 
 // SetMessage sets the value of Message.
-func (s *AuthRefreshPostInternalServerError) SetMessage(val OptString) {
+func (s *APIAuthRefreshPostInternalServerError) SetMessage(val OptString) {
 	s.Message = val
 }
 
-func (*AuthRefreshPostInternalServerError) authRefreshPostRes() {}
+func (*APIAuthRefreshPostInternalServerError) aPIAuthRefreshPostRes() {}
 
-type AuthRefreshPostOK struct {
+type APIAuthRefreshPostOK struct {
 	// Новый токен доступа JWT.
 	AccessToken OptString `json:"access_token"`
 	// Новый токен обновления JWT.
@@ -114,120 +114,120 @@ type AuthRefreshPostOK struct {
 }
 
 // GetAccessToken returns the value of AccessToken.
-func (s *AuthRefreshPostOK) GetAccessToken() OptString {
+func (s *APIAuthRefreshPostOK) GetAccessToken() OptString {
 	return s.AccessToken
 }
 
 // GetRefreshToken returns the value of RefreshToken.
-func (s *AuthRefreshPostOK) GetRefreshToken() OptString {
+func (s *APIAuthRefreshPostOK) GetRefreshToken() OptString {
 	return s.RefreshToken
 }
 
 // SetAccessToken sets the value of AccessToken.
-func (s *AuthRefreshPostOK) SetAccessToken(val OptString) {
+func (s *APIAuthRefreshPostOK) SetAccessToken(val OptString) {
 	s.AccessToken = val
 }
 
 // SetRefreshToken sets the value of RefreshToken.
-func (s *AuthRefreshPostOK) SetRefreshToken(val OptString) {
+func (s *APIAuthRefreshPostOK) SetRefreshToken(val OptString) {
 	s.RefreshToken = val
 }
 
-func (*AuthRefreshPostOK) authRefreshPostRes() {}
+func (*APIAuthRefreshPostOK) aPIAuthRefreshPostRes() {}
 
-type AuthRefreshPostReq struct {
+type APIAuthRefreshPostReq struct {
 	// Токен обновления JWT.
 	RefreshToken OptString `json:"refresh_token"`
 }
 
 // GetRefreshToken returns the value of RefreshToken.
-func (s *AuthRefreshPostReq) GetRefreshToken() OptString {
+func (s *APIAuthRefreshPostReq) GetRefreshToken() OptString {
 	return s.RefreshToken
 }
 
 // SetRefreshToken sets the value of RefreshToken.
-func (s *AuthRefreshPostReq) SetRefreshToken(val OptString) {
+func (s *APIAuthRefreshPostReq) SetRefreshToken(val OptString) {
 	s.RefreshToken = val
 }
 
-type AuthRefreshPostUnauthorized struct {
+type APIAuthRefreshPostUnauthorized struct {
 	Message OptString `json:"message"`
 }
 
 // GetMessage returns the value of Message.
-func (s *AuthRefreshPostUnauthorized) GetMessage() OptString {
+func (s *APIAuthRefreshPostUnauthorized) GetMessage() OptString {
 	return s.Message
 }
 
 // SetMessage sets the value of Message.
-func (s *AuthRefreshPostUnauthorized) SetMessage(val OptString) {
+func (s *APIAuthRefreshPostUnauthorized) SetMessage(val OptString) {
 	s.Message = val
 }
 
-func (*AuthRefreshPostUnauthorized) authRefreshPostRes() {}
+func (*APIAuthRefreshPostUnauthorized) aPIAuthRefreshPostRes() {}
 
-type AuthVerifyPostInternalServerError struct {
+type APIAuthVerifyPostInternalServerError struct {
 	Message OptString `json:"message"`
 }
 
 // GetMessage returns the value of Message.
-func (s *AuthVerifyPostInternalServerError) GetMessage() OptString {
+func (s *APIAuthVerifyPostInternalServerError) GetMessage() OptString {
 	return s.Message
 }
 
 // SetMessage sets the value of Message.
-func (s *AuthVerifyPostInternalServerError) SetMessage(val OptString) {
+func (s *APIAuthVerifyPostInternalServerError) SetMessage(val OptString) {
 	s.Message = val
 }
 
-func (*AuthVerifyPostInternalServerError) authVerifyPostRes() {}
+func (*APIAuthVerifyPostInternalServerError) aPIAuthVerifyPostRes() {}
 
-type AuthVerifyPostOK struct {
+type APIAuthVerifyPostOK struct {
 	Valid OptBool `json:"valid"`
 }
 
 // GetValid returns the value of Valid.
-func (s *AuthVerifyPostOK) GetValid() OptBool {
+func (s *APIAuthVerifyPostOK) GetValid() OptBool {
 	return s.Valid
 }
 
 // SetValid sets the value of Valid.
-func (s *AuthVerifyPostOK) SetValid(val OptBool) {
+func (s *APIAuthVerifyPostOK) SetValid(val OptBool) {
 	s.Valid = val
 }
 
-func (*AuthVerifyPostOK) authVerifyPostRes() {}
+func (*APIAuthVerifyPostOK) aPIAuthVerifyPostRes() {}
 
-type AuthVerifyPostReq struct {
+type APIAuthVerifyPostReq struct {
 	// Токен доступа JWT.
 	AccessToken OptString `json:"access_token"`
 }
 
 // GetAccessToken returns the value of AccessToken.
-func (s *AuthVerifyPostReq) GetAccessToken() OptString {
+func (s *APIAuthVerifyPostReq) GetAccessToken() OptString {
 	return s.AccessToken
 }
 
 // SetAccessToken sets the value of AccessToken.
-func (s *AuthVerifyPostReq) SetAccessToken(val OptString) {
+func (s *APIAuthVerifyPostReq) SetAccessToken(val OptString) {
 	s.AccessToken = val
 }
 
-type AuthVerifyPostUnauthorized struct {
+type APIAuthVerifyPostUnauthorized struct {
 	Message OptString `json:"message"`
 }
 
 // GetMessage returns the value of Message.
-func (s *AuthVerifyPostUnauthorized) GetMessage() OptString {
+func (s *APIAuthVerifyPostUnauthorized) GetMessage() OptString {
 	return s.Message
 }
 
 // SetMessage sets the value of Message.
-func (s *AuthVerifyPostUnauthorized) SetMessage(val OptString) {
+func (s *APIAuthVerifyPostUnauthorized) SetMessage(val OptString) {
 	s.Message = val
 }
 
-func (*AuthVerifyPostUnauthorized) authVerifyPostRes() {}
+func (*APIAuthVerifyPostUnauthorized) aPIAuthVerifyPostRes() {}
 
 // NewOptBool returns new OptBool with value set to v.
 func NewOptBool(v bool) OptBool {

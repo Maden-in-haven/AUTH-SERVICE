@@ -9,7 +9,7 @@ import (
 	"github.com/Maden-in-haven/crmlib/pkg/user"
 )
 
-func (s *AuthService) AuthLoginPost(ctx context.Context, req *gen.AuthLoginPostReq) (gen.AuthLoginPostRes, error) {
+func (s *AuthService) AuthLoginPost(ctx context.Context, req *gen.APIAuthLoginPostReq) (gen.APIAuthLoginPostRes, error) {
 	// Логируем начало запроса
 	log.Printf("Начало запроса на авторизацию для пользователя: %s", req.Username.Value)
 
@@ -17,7 +17,7 @@ func (s *AuthService) AuthLoginPost(ctx context.Context, req *gen.AuthLoginPostR
 	user, err := user.AuthenticateUser(req.Username.Value, req.Password.Value)
 	if err != nil {
 		log.Printf("Ошибка авторизации пользователя %s: %v", req.Username.Value, err)
-		return &gen.AuthLoginPostUnauthorized{
+		return &gen.APIAuthLoginPostUnauthorized{
 			Message: gen.OptString{
 				Value: "Неверный указан пользователь или пароль",
 				Set:   true,
@@ -31,7 +31,7 @@ func (s *AuthService) AuthLoginPost(ctx context.Context, req *gen.AuthLoginPostR
 	if err != nil {
 		log.Printf("Ошибка генерации JWT токена для пользователя %s: %v", user.ID, err)
 		// Возвращаем 500 Internal Server Error в случае ошибки при генерации JWT
-		return &gen.AuthLoginPostInternalServerError{
+		return &gen.APIAuthLoginPostInternalServerError{
 			Message: gen.OptString{
 				Value: "Ошибка при генерации JWT токена",
 				Set:   true,
@@ -45,7 +45,7 @@ func (s *AuthService) AuthLoginPost(ctx context.Context, req *gen.AuthLoginPostR
 	if err != nil {
 		log.Printf("Ошибка генерации Refresh токена для пользователя %s: %v", user.ID, err)
 		// Возвращаем 500 Internal Server Error в случае ошибки при генерации Refresh токена
-		return &gen.AuthLoginPostInternalServerError{
+		return &gen.APIAuthLoginPostInternalServerError{
 			Message: gen.OptString{
 				Value: "Ошибка при генерации рефреш токена",
 				Set:   true,
@@ -58,7 +58,7 @@ func (s *AuthService) AuthLoginPost(ctx context.Context, req *gen.AuthLoginPostR
 	log.Printf("Авторизация пользователя %s успешно завершена", req.Username.Value)
 
 	// Возвращаем ответ с токеном и рефреш токеном
-	return &gen.AuthLoginPostOK{
+	return &gen.APIAuthLoginPostOK{
 		AccessToken:  gen.OptString{Value: token, Set: true},
 		RefreshToken: gen.OptString{Value: refreshToken, Set: true},
 	}, nil

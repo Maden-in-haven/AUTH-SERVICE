@@ -16,7 +16,7 @@ tags:
     description: Операции связанные с авторизацией
 
 paths:
-  /auth/login:
+  /api/auth/login:
     post:
       tags:
         - Authorization
@@ -74,7 +74,7 @@ paths:
                     type: string
                     example: "Internal server error"
 
-  /auth/verify:
+  /api/auth/verify:
     post:
       tags:
         - Authorization
@@ -123,7 +123,7 @@ paths:
                     type: string
                     example: "Internal server error"
 
-  /auth/refresh:
+  /api/auth/refresh:
     post:
       tags:
         - Authorization

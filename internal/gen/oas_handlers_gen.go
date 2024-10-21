@@ -19,20 +19,20 @@ import (
 	"github.com/ogen-go/ogen/ogenerrors"
 )
 
-// handleAuthLoginPostRequest handles POST /auth/login operation.
+// handleAPIAuthLoginPostRequest handles POST /api/auth/login operation.
 //
 // Авторизует пользователя с использованием учетных
 // данных (логин/пароль).
 //
-// POST /auth/login
-func (s *Server) handleAuthLoginPostRequest(args [0]string, argsEscaped bool, w http.ResponseWriter, r *http.Request) {
+// POST /api/auth/login
+func (s *Server) handleAPIAuthLoginPostRequest(args [0]string, argsEscaped bool, w http.ResponseWriter, r *http.Request) {
 	otelAttrs := []attribute.KeyValue{
 		semconv.HTTPRequestMethodKey.String("POST"),
-		semconv.HTTPRouteKey.String("api/auth/login"),
+		semconv.HTTPRouteKey.String("/api/auth/login"),
 	}
 
 	// Start a span for this request.
-	ctx, span := s.cfg.Tracer.Start(r.Context(), "AuthLoginPost",
+	ctx, span := s.cfg.Tracer.Start(r.Context(), "APIAuthLoginPost",
 		trace.WithAttributes(otelAttrs...),
 		serverSpanKind,
 	)
@@ -63,11 +63,11 @@ func (s *Server) handleAuthLoginPostRequest(args [0]string, argsEscaped bool, w 
 		}
 		err          error
 		opErrContext = ogenerrors.OperationContext{
-			Name: "AuthLoginPost",
+			Name: "APIAuthLoginPost",
 			ID:   "",
 		}
 	)
-	request, close, err := s.decodeAuthLoginPostRequest(r)
+	request, close, err := s.decodeAPIAuthLoginPostRequest(r)
 	if err != nil {
 		err = &ogenerrors.DecodeRequestError{
 			OperationContext: opErrContext,
@@ -83,11 +83,11 @@ func (s *Server) handleAuthLoginPostRequest(args [0]string, argsEscaped bool, w 
 		}
 	}()
 
-	var response AuthLoginPostRes
+	var response APIAuthLoginPostRes
 	if m := s.cfg.Middleware; m != nil {
 		mreq := middleware.Request{
 			Context:          ctx,
-			OperationName:    "AuthLoginPost",
+			OperationName:    "APIAuthLoginPost",
 			OperationSummary: "Вход пользователя",
 			OperationID:      "",
 			Body:             request,
@@ -96,9 +96,9 @@ func (s *Server) handleAuthLoginPostRequest(args [0]string, argsEscaped bool, w 
 		}
 
 		type (
-			Request  = *AuthLoginPostReq
+			Request  = *APIAuthLoginPostReq
 			Params   = struct{}
-			Response = AuthLoginPostRes
+			Response = APIAuthLoginPostRes
 		)
 		response, err = middleware.HookMiddleware[
 			Request,
@@ -109,12 +109,12 @@ func (s *Server) handleAuthLoginPostRequest(args [0]string, argsEscaped bool, w 
 			mreq,
 			nil,
 			func(ctx context.Context, request Request, params Params) (response Response, err error) {
-				response, err = s.h.AuthLoginPost(ctx, request)
+				response, err = s.h.APIAuthLoginPost(ctx, request)
 				return response, err
 			},
 		)
 	} else {
-		response, err = s.h.AuthLoginPost(ctx, request)
+		response, err = s.h.APIAuthLoginPost(ctx, request)
 	}
 	if err != nil {
 		defer recordError("Internal", err)
@@ -122,7 +122,7 @@ func (s *Server) handleAuthLoginPostRequest(args [0]string, argsEscaped bool, w 
 		return
 	}
 
-	if err := encodeAuthLoginPostResponse(response, w, span); err != nil {
+	if err := encodeAPIAuthLoginPostResponse(response, w, span); err != nil {
 		defer recordError("EncodeResponse", err)
 		if !errors.Is(err, ht.ErrInternalServerErrorResponse) {
 			s.cfg.ErrorHandler(ctx, w, r, err)
@@ -131,20 +131,20 @@ func (s *Server) handleAuthLoginPostRequest(args [0]string, argsEscaped bool, w 
 	}
 }
 
-// handleAuthRefreshPostRequest handles POST /auth/refresh operation.
+// handleAPIAuthRefreshPostRequest handles POST /api/auth/refresh operation.
 //
 // Обновляет токен доступа с использованием
 // действующего токена обновления.
 //
-// POST /auth/refresh
-func (s *Server) handleAuthRefreshPostRequest(args [0]string, argsEscaped bool, w http.ResponseWriter, r *http.Request) {
+// POST /api/auth/refresh
+func (s *Server) handleAPIAuthRefreshPostRequest(args [0]string, argsEscaped bool, w http.ResponseWriter, r *http.Request) {
 	otelAttrs := []attribute.KeyValue{
 		semconv.HTTPRequestMethodKey.String("POST"),
-		semconv.HTTPRouteKey.String("api/auth/refresh"),
+		semconv.HTTPRouteKey.String("/api/auth/refresh"),
 	}
 
 	// Start a span for this request.
-	ctx, span := s.cfg.Tracer.Start(r.Context(), "AuthRefreshPost",
+	ctx, span := s.cfg.Tracer.Start(r.Context(), "APIAuthRefreshPost",
 		trace.WithAttributes(otelAttrs...),
 		serverSpanKind,
 	)
@@ -175,11 +175,11 @@ func (s *Server) handleAuthRefreshPostRequest(args [0]string, argsEscaped bool, 
 		}
 		err          error
 		opErrContext = ogenerrors.OperationContext{
-			Name: "AuthRefreshPost",
+			Name: "APIAuthRefreshPost",
 			ID:   "",
 		}
 	)
-	request, close, err := s.decodeAuthRefreshPostRequest(r)
+	request, close, err := s.decodeAPIAuthRefreshPostRequest(r)
 	if err != nil {
 		err = &ogenerrors.DecodeRequestError{
 			OperationContext: opErrContext,
@@ -195,11 +195,11 @@ func (s *Server) handleAuthRefreshPostRequest(args [0]string, argsEscaped bool, 
 		}
 	}()
 
-	var response AuthRefreshPostRes
+	var response APIAuthRefreshPostRes
 	if m := s.cfg.Middleware; m != nil {
 		mreq := middleware.Request{
 			Context:          ctx,
-			OperationName:    "AuthRefreshPost",
+			OperationName:    "APIAuthRefreshPost",
 			OperationSummary: "Обновление токена",
 			OperationID:      "",
 			Body:             request,
@@ -208,9 +208,9 @@ func (s *Server) handleAuthRefreshPostRequest(args [0]string, argsEscaped bool, 
 		}
 
 		type (
-			Request  = *AuthRefreshPostReq
+			Request  = *APIAuthRefreshPostReq
 			Params   = struct{}
-			Response = AuthRefreshPostRes
+			Response = APIAuthRefreshPostRes
 		)
 		response, err = middleware.HookMiddleware[
 			Request,
@@ -221,12 +221,12 @@ func (s *Server) handleAuthRefreshPostRequest(args [0]string, argsEscaped bool, 
 			mreq,
 			nil,
 			func(ctx context.Context, request Request, params Params) (response Response, err error) {
-				response, err = s.h.AuthRefreshPost(ctx, request)
+				response, err = s.h.APIAuthRefreshPost(ctx, request)
 				return response, err
 			},
 		)
 	} else {
-		response, err = s.h.AuthRefreshPost(ctx, request)
+		response, err = s.h.APIAuthRefreshPost(ctx, request)
 	}
 	if err != nil {
 		defer recordError("Internal", err)
@@ -234,7 +234,7 @@ func (s *Server) handleAuthRefreshPostRequest(args [0]string, argsEscaped bool, 
 		return
 	}
 
-	if err := encodeAuthRefreshPostResponse(response, w, span); err != nil {
+	if err := encodeAPIAuthRefreshPostResponse(response, w, span); err != nil {
 		defer recordError("EncodeResponse", err)
 		if !errors.Is(err, ht.ErrInternalServerErrorResponse) {
 			s.cfg.ErrorHandler(ctx, w, r, err)
@@ -243,19 +243,19 @@ func (s *Server) handleAuthRefreshPostRequest(args [0]string, argsEscaped bool, 
 	}
 }
 
-// handleAuthVerifyPostRequest handles POST /auth/verify operation.
+// handleAPIAuthVerifyPostRequest handles POST /api/auth/verify operation.
 //
 // Проверяет действительность переданного токена JWT.
 //
-// POST /auth/verify
-func (s *Server) handleAuthVerifyPostRequest(args [0]string, argsEscaped bool, w http.ResponseWriter, r *http.Request) {
+// POST /api/auth/verify
+func (s *Server) handleAPIAuthVerifyPostRequest(args [0]string, argsEscaped bool, w http.ResponseWriter, r *http.Request) {
 	otelAttrs := []attribute.KeyValue{
 		semconv.HTTPRequestMethodKey.String("POST"),
-		semconv.HTTPRouteKey.String("api/auth/verify"),
+		semconv.HTTPRouteKey.String("/api/auth/verify"),
 	}
 
 	// Start a span for this request.
-	ctx, span := s.cfg.Tracer.Start(r.Context(), "AuthVerifyPost",
+	ctx, span := s.cfg.Tracer.Start(r.Context(), "APIAuthVerifyPost",
 		trace.WithAttributes(otelAttrs...),
 		serverSpanKind,
 	)
@@ -286,11 +286,11 @@ func (s *Server) handleAuthVerifyPostRequest(args [0]string, argsEscaped bool, w
 		}
 		err          error
 		opErrContext = ogenerrors.OperationContext{
-			Name: "AuthVerifyPost",
+			Name: "APIAuthVerifyPost",
 			ID:   "",
 		}
 	)
-	request, close, err := s.decodeAuthVerifyPostRequest(r)
+	request, close, err := s.decodeAPIAuthVerifyPostRequest(r)
 	if err != nil {
 		err = &ogenerrors.DecodeRequestError{
 			OperationContext: opErrContext,
@@ -306,11 +306,11 @@ func (s *Server) handleAuthVerifyPostRequest(args [0]string, argsEscaped bool, w
 		}
 	}()
 
-	var response AuthVerifyPostRes
+	var response APIAuthVerifyPostRes
 	if m := s.cfg.Middleware; m != nil {
 		mreq := middleware.Request{
 			Context:          ctx,
-			OperationName:    "AuthVerifyPost",
+			OperationName:    "APIAuthVerifyPost",
 			OperationSummary: "Проверка токена доступа",
 			OperationID:      "",
 			Body:             request,
@@ -319,9 +319,9 @@ func (s *Server) handleAuthVerifyPostRequest(args [0]string, argsEscaped bool, w
 		}
 
 		type (
-			Request  = *AuthVerifyPostReq
+			Request  = *APIAuthVerifyPostReq
 			Params   = struct{}
-			Response = AuthVerifyPostRes
+			Response = APIAuthVerifyPostRes
 		)
 		response, err = middleware.HookMiddleware[
 			Request,
@@ -332,12 +332,12 @@ func (s *Server) handleAuthVerifyPostRequest(args [0]string, argsEscaped bool, w
 			mreq,
 			nil,
 			func(ctx context.Context, request Request, params Params) (response Response, err error) {
-				response, err = s.h.AuthVerifyPost(ctx, request)
+				response, err = s.h.APIAuthVerifyPost(ctx, request)
 				return response, err
 			},
 		)
 	} else {
-		response, err = s.h.AuthVerifyPost(ctx, request)
+		response, err = s.h.APIAuthVerifyPost(ctx, request)
 	}
 	if err != nil {
 		defer recordError("Internal", err)
@@ -345,7 +345,7 @@ func (s *Server) handleAuthVerifyPostRequest(args [0]string, argsEscaped bool, w
 		return
 	}
 
-	if err := encodeAuthVerifyPostResponse(response, w, span); err != nil {
+	if err := encodeAPIAuthVerifyPostResponse(response, w, span); err != nil {
 		defer recordError("EncodeResponse", err)
 		if !errors.Is(err, ht.ErrInternalServerErrorResponse) {
 			s.cfg.ErrorHandler(ctx, w, r, err)
