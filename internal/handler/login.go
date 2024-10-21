@@ -9,7 +9,7 @@ import (
 	"github.com/Maden-in-haven/crmlib/pkg/user"
 )
 
-func (s *AuthService) AuthLoginPost(ctx context.Context, req *gen.APIAuthLoginPostReq) (gen.APIAuthLoginPostRes, error) {
+func (s *AuthService) APIAuthLoginPost(ctx context.Context, req *gen.APIAuthLoginPostReq) (gen.APIAuthLoginPostRes, error) {
 	// Логируем начало запроса
 	log.Printf("Начало запроса на авторизацию для пользователя: %s", req.Username.Value)
 

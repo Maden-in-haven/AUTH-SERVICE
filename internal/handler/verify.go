@@ -8,7 +8,7 @@ import (
 	"github.com/Maden-in-haven/crmlib/pkg/myjwt"
 )
 
-func (s *AuthService) AuthVerifyPost(ctx context.Context, req *gen.APIAuthVerifyPostReq) (gen.APIAuthVerifyPostRes, error) {
+func (s *AuthService) APIAuthVerifyPost(ctx context.Context, req *gen.APIAuthVerifyPostReq) (gen.APIAuthVerifyPostRes, error) {
 	// Логируем начало запроса валидации токена
 	log.Printf("Запрос на валидацию токена: %s", req.AccessToken.Value)
 

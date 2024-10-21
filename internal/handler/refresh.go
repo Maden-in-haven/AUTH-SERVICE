@@ -8,7 +8,7 @@ import (
 	"github.com/Maden-in-haven/crmlib/pkg/myjwt"
 )
 
-func (s *AuthService) AuthRefreshPost(ctx context.Context, req *gen.APIAuthRefreshPostReq) (gen.APIAuthRefreshPostRes, error) {
+func (s *AuthService) APIAuthRefreshPost(ctx context.Context, req *gen.APIAuthRefreshPostReq) (gen.APIAuthRefreshPostRes, error) {
 	// Логируем начало запроса на обновление токенов
 	log.Printf("Запрос на обновление токенов для рефреш токена: %s", req.RefreshToken.Value)
 
