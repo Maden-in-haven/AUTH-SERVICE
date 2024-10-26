@@ -2,10 +2,10 @@ package handler
 
 import (
 	"auth/internal/gen"
+	"auth/internal/token"
 	"context"
+	// "github.com/Maden-in-haven/crmlib/pkg/myjwt"
 	"log"
-
-	"github.com/Maden-in-haven/crmlib/pkg/myjwt"
 )
 
 func (s *AuthService) APIAuthRefreshPost(ctx context.Context, req *gen.APIAuthRefreshPostReq) (gen.APIAuthRefreshPostRes, error) {
@@ -13,7 +13,7 @@ func (s *AuthService) APIAuthRefreshPost(ctx context.Context, req *gen.APIAuthRe
 	log.Printf("Запрос на обновление токенов для рефреш токена: %s", req.RefreshToken.Value)
 
 	// Валидация рефреш токена
-	claims, err := myjwt.ValidateJWT(req.RefreshToken.Value)
+	claims, err := token.ValidateJWT(req.RefreshToken.Value)
 	if err != nil {
 		log.Printf("Ошибка валидации рефреш токена: %v", err)
 		// Рефреш токен недействителен или истек
@@ -39,7 +39,7 @@ func (s *AuthService) APIAuthRefreshPost(ctx context.Context, req *gen.APIAuthRe
 	log.Printf("Рефреш токен успешно валидирован для пользователя %s", userID)
 
 	// Генерация нового токена доступа (JWT)
-	newAccessToken, err := myjwt.GenerateJWT(userID)
+	newAccessToken, err := token.GenerateJWT(userID)
 	if err != nil {
 		log.Printf("Ошибка генерации нового токена доступа для пользователя %s: %v", userID, err)
 		return &gen.APIAuthRefreshPostInternalServerError{
@@ -52,7 +52,7 @@ func (s *AuthService) APIAuthRefreshPost(ctx context.Context, req *gen.APIAuthRe
 	log.Printf("Новый токен доступа успешно сгенерирован для пользователя %s", userID)
 
 	// Генерация нового рефреш токена
-	refreshToken, err := myjwt.GenerateRefreshToken(userID)
+	refreshToken, err := token.GenerateRefreshToken(userID)
 	if err != nil {
 		log.Printf("Ошибка генерации рефреш токена для пользователя %s: %v", userID, err)
 		return &gen.APIAuthRefreshPostInternalServerError{
