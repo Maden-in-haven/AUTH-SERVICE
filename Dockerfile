@@ -29,7 +29,7 @@ WORKDIR /app
 COPY --from=build /app/myapp .
 
 # Открываем порт 8080 для работы приложения
-EXPOSE 8080
+EXPOSE 80
 
 # Запускаем приложение
 CMD ["./myapp"]

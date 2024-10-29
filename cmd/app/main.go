@@ -25,6 +25,7 @@ import (
 	"net/http"
 )
 
+
 func main() {
 	authService := &handler.AuthService{}
 	srv, err := gen.NewServer(authService)
@@ -32,9 +33,9 @@ func main() {
 		log.Fatalf("Ошибка при создании сервера: %v", err)
 	}
 
-	// Запускаем сервер на порту 8080.
-	log.Println("Сервер запущен на :8080")
-	if err := http.ListenAndServe(":8080", srv); err != nil {
+	// Запускаем сервер на порту 80.
+	log.Println("Сервер запущен на 0.0.0.0:80")
+	if err := http.ListenAndServe(":80", srv); err != nil {
 		log.Fatalf("Ошибка при запуске сервера: %v", err)
 	}
 }
