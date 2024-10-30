@@ -34,8 +34,8 @@ func main() {
 	}
 
 	// Запускаем сервер на порту 80.
-	log.Println("Сервер запущен на 0.0.0.0:80")
-	if err := http.ListenAndServe(":80", srv); err != nil {
+	log.Println("Сервер запущен на 3001")
+	if err := http.ListenAndServe(":3001", srv); err != nil {
 		log.Fatalf("Ошибка при запуске сервера: %v", err)
 	}
 }
