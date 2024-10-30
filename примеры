@@ -5,7 +5,7 @@ curl -X POST http://localhost:80/api/auth/login \
   "password": "password123"
 }'
 
-curl -X POST http://localhost:8080/auth/login \
+curl -X POST http://localhost:8080/api/auth/login \
 -H "Content-Type: application/json" \
 -d '{
   "username": "Исмаил",
